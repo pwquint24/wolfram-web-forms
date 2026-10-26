@@ -1,0 +1,750 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     28684,        740]
+NotebookOptionsPosition[     24421,        668]
+NotebookOutlinePosition[     24813,        684]
+CellTagsIndexPosition[     24770,        681]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cascading Dependent Fields with TemplateSlot and Autosubmit", "Title",ExpressionUUID->"53682ab3-d2a3-4c8c-9a43-a5134d80163a"],
+
+Cell[TextData[{
+ "This notebook demonstrates how to create dynamic web forms with \
+interdependent fields using the Wolfram Templating Engine (",
+ Cell[BoxData[
+  TemplateBox[{
+   "TemplateSlot", "paclet:ref/TemplateSlot", 
+    "https://reference.wolfram.com/language/ref/TemplateSlot.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "4ed64070-4043-4b81-903b-f9524465ac4d"],
+ " and ",
+ Cell[BoxData[
+  TemplateBox[{
+   "TemplateExpression", "paclet:ref/TemplateExpression", 
+    "https://reference.wolfram.com/language/ref/TemplateExpression.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "d69face5-d329-40a4-af4a-5b09b5a8133a"],
+ "). "
+}], "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"c15de6e0-a9c0-4e60-ae5b-9eb21bb27c20"],
+
+Cell[CellGroupData[{
+
+Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"5863aa0a-5377-4f96-bf89-7f0c40b2abb5"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Why ",
+ Cell[BoxData[
+  RowBox[{"Dynamic", "[", "...", "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "e4b20f3f-a3ac-4108-acb4-2abf62c52e33"],
+ " Does Not Work in Web Forms"
+}], "Subsection",ExpressionUUID->"fcffdab8-c46a-4f53-880c-004fe65b37c7"],
+
+Cell[TextData[{
+ "In desktop Mathematica notebooks, ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Dynamic", "paclet:ref/Dynamic", 
+    "https://reference.wolfram.com/language/ref/Dynamic.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "efe6dbe9-f601-45e1-ad01-e67b97c17a5a"],
+ " creates a live client-side reactive binding within the front-end \
+preemptive evaluation loop."
+}], "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
+
+Cell[TextData[{
+ "However, ",
+ StyleBox["web forms adhere to HTTP request/response semantics",
+  FontWeight->Bold],
+ ". When you place ",
+ Cell[BoxData[
+  RowBox[{"Dynamic", "[", "x", "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "9683c971-96a8-41f4-9732-9b250abe214e"],
+ " inside a web form: "
+}], "Text",ExpressionUUID->"72793333-6e0c-4519-943c-c54d8307d095"],
+
+Cell[TextData[{
+ "It is ",
+ StyleBox["not",
+  FontWeight->Bold],
+ " converted into client-side reactive JavaScript."
+}], "Item",ExpressionUUID->"617585ff-ced7-4e58-b15b-e2f8493c836a"],
+
+Cell[TextData[{
+ "It is treated as a held expression that renders literally into the HTML \
+(e.g. ",
+ Cell[BoxData[Cell["value=\"Dynamic[0]\"",
+   Background->None,ExpressionUUID->"a7d34bd8-f460-40b6-bc9f-f0f6e645cb48"]], 
+  "InlineCode",ExpressionUUID->"f9b822f9-54b5-4601-9099-48e10ee8075b"],
+ ")."
+}], "Item",ExpressionUUID->"192f6f23-753a-4d83-9b1a-ee324eabe7be"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+How Web Forms Achieve Interdependent Fields: The Template Slot Engine\
+\>", "Subsection",ExpressionUUID->"b7925ba9-9ec5-40fe-a3bf-137f9291a10f"],
+
+Cell["\<\
+Wolfram Web Forms achieve field-to-field dynamic interdependence through \
+server-side cascading: \
+\>", "Text",ExpressionUUID->"12f1cf0f-cf04-49c7-9d34-5002cfbf8aee"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"TemplateSlot", "[", "\"\<fieldName\>\"", "]"}]], "InlineWL", 
+  "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,
+  FontWeight->Bold,ExpressionUUID->"b3988c60-4c69-406b-a727-326706f5e7e7"],
+ ": References the current value of an earlier field."
+}], "Item",ExpressionUUID->"455bdfd7-ea44-4552-9e4d-38151caf855a"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"TemplateExpression", "[", "...", "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,
+  FontWeight->Bold,ExpressionUUID->"6476fa77-fbf1-45b9-a912-9a9b004d9da1"],
+ ": Dynamically computes choices, ranges, or controls based on earlier field \
+values."
+}], "Item",ExpressionUUID->"b41867ff-e2a6-4399-b0ff-ac83abf61598"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Under the Hood: The Autosubmit Mechanism", "Subsection",ExpressionUUID->"1ff8f7d4-de6c-4ff6-ad51-3954669c0c83"],
+
+Cell[TextData[{
+ "1. ",
+ StyleBox["Initial Page Load",
+  FontWeight->Bold],
+ ": When the Wolfram Engine sees that field ",
+ Cell[BoxData["\"\<topic\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "c16ebcee-b03d-4377-8fba-944c7b2f0f43"],
+ " depends on ",
+ Cell[BoxData[
+  RowBox[{"TemplateSlot", "[", "\"\<category\>\"", "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "2b554192-9c6f-4582-8c92-fa20afe32173"],
+ ", it ",
+ StyleBox["withholds",
+  FontWeight->Bold],
+ " ",
+ Cell[BoxData["\"\<topic\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "e4c70aa2-e9be-44d5-aad2-9f73c8d2f5cf"],
+ " from the initial HTML."
+}], "Text",ExpressionUUID->"05003ce8-b022-400b-9e53-e845dba5db78"],
+
+Cell[TextData[{
+ "2. ",
+ StyleBox["Autosubmit Tagging",
+  FontWeight->Bold],
+ ": The prerequisite ",
+ Cell[BoxData["\"\<category\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "9ba6e666-d704-4723-8b70-813a769b63e2"],
+ " input is tagged with ",
+ Cell[BoxData[Cell["data-autosubmit=\"autosubmit\"",
+   Background->None,ExpressionUUID->"5feb5014-78e4-465d-8084-268f30449871"]], 
+  "InlineCode",ExpressionUUID->"1587d4cf-fdbf-4100-9774-efdd46746b33"],
+ "."
+}], "Text",ExpressionUUID->"7a74fea7-ce49-44bc-92b5-80ff94333f56"],
+
+Cell[TextData[{
+ "3. ",
+ StyleBox["Triggered Submission",
+  FontWeight->Bold],
+ ": As soon as the user selects a category, the browser automatically submits \
+an HTTP request to the Wolfram Cloud."
+}], "Text",ExpressionUUID->"27935906-aef6-4e89-aefd-cb163c0710b1"],
+
+Cell[TextData[{
+ "4. ",
+ StyleBox["Server Re-evaluation",
+  FontWeight->Bold],
+ ": The engine evaluates the ",
+ Cell[BoxData[
+  TemplateBox[{
+   "TemplateExpression", "paclet:ref/TemplateExpression", 
+    "https://reference.wolfram.com/language/ref/TemplateExpression.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "2580ee0e-08ef-4d21-a48d-6742320d5cd9"],
+ " with the chosen category and returns the updated form, now unlocking the \
+populated ",
+ Cell[BoxData["\"\<topic\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1bdfcfef-f4a9-4886-9210-6da1920cd46e"],
+ " field. "
+}], "Text",ExpressionUUID->"d9dae258-15d6-4bd4-b937-61d87bce7e7f"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"f562466d-13ae-465e-8548-8266d8ae00fa"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Define the Form with Cascading Fields", "Section",ExpressionUUID->"64400821-6615-4d27-8515-7b1e2bc9751d"],
+
+Cell["\<\
+In this example, choosing a category (\"Science\", \"Arts\", or \"Sports\") \
+automatically triggers a server-side round trip to populate the corresponding \
+list of topics. \
+\>", "Text",ExpressionUUID->"48c7f798-1048-413e-a122-ebc0c084f03f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"form", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{"\"\<category\>\"", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Science\>\"", ",", "\"\<Arts\>\"", 
+          ",", "\"\<Sports\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<topic\>\"", "->", 
+        RowBox[{"TemplateExpression", "[", "\[IndentingNewLine]", "      ", 
+         RowBox[{"Switch", "[", 
+          RowBox[{
+           RowBox[{"TemplateSlot", "[", "\"\<category\>\"", "]"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Science\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Physics\>\"", ",", "\"\<Chemistry\>\"", 
+             ",", "\"\<Biology\>\"", ",", "\"\<Astronomy\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Arts\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Literature\>\"", ",", "\"\<Music\>\"", 
+             ",", "\"\<Painting\>\"", ",", "\"\<Cinema\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Sports\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Football\>\"", ",", "\"\<Basketball\>\"", 
+             ",", "\"\<Tennis\>\"", ",", "\"\<Swimming\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "_", ",", 
+           RowBox[{"{", "}"}]}], "\[IndentingNewLine]", "      ", "]"}], 
+         "\[IndentingNewLine]", "    ", "]"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<notes\>\"", "->", "\"\<String\>\""}]}], 
+      "\[IndentingNewLine]", "  ", "}"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Panel", "[", "\[IndentingNewLine]", "      ", 
+        RowBox[{
+         RowBox[{"Column", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", "        ", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Selection Summary\>\"", ",", "Bold", ",", "16"}], 
+             "]"}], ",", "\[IndentingNewLine]", "        ", 
+            RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", 
+            "        ", 
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", "\[IndentingNewLine]", "          ", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Selected Category:\>\"", ",", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                    RowBox[{"params", "[", "\"\<category\>\"", "]"}], ",", 
+                    "Bold"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+                "          ", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<Selected Topic:\>\"", ",", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                    RowBox[{"params", "[", "\"\<topic\>\"", "]"}], ",", 
+                    "Bold", ",", 
+                    RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}]}], "}"}], ",",
+                 "\[IndentingNewLine]", "          ", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<User Notes:\>\"", ",", 
+                  RowBox[{"params", "[", "\"\<notes\>\"", "]"}]}], "}"}]}], 
+               "\[IndentingNewLine]", "        ", "}"}], ",", 
+              RowBox[{"Alignment", "->", "Left"}], ",", 
+              RowBox[{"Spacings", "->", 
+               RowBox[{"{", 
+                RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}]}], 
+           "\[IndentingNewLine]", "      ", "}"}], "]"}], ",", 
+         "\[IndentingNewLine]", "      ", 
+         RowBox[{"ImageSize", "->", "400"}]}], "\[IndentingNewLine]", "    ", 
+        "]"}]}], "\[IndentingNewLine]", "  ", "]"}], ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", 
+         "->", "\"\<Dynamic Dependent Category Selector\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", 
+         "->", "\"\<Selecting a Category automatically submits and unlocks \
+the corresponding Topic dropdown via TemplateSlot.\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Confirm Selection\>\""}]}], 
+       "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     "  ", 
+     RowBox[{"PageTheme", "->", "\"\<Light\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellLabel->"In[65]:=",ExpressionUUID->"e3e9bcb1-0a6b-4372-9849-8c375b328c1c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"form", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{"\"\<category\>\"", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Science\>\"", ",", "\"\<Arts\>\"", 
+          ",", "\"\<Sports\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<topic\>\"", "->", 
+        RowBox[{"TemplateExpression", "[", "\[IndentingNewLine]", "      ", 
+         RowBox[{"Switch", "[", 
+          RowBox[{
+           RowBox[{"TemplateSlot", "[", "\"\<category\>\"", "]"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Science\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Physics\>\"", ",", "\"\<Chemistry\>\"", 
+             ",", "\"\<Biology\>\"", ",", "\"\<Astronomy\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Arts\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Literature\>\"", ",", "\"\<Music\>\"", 
+             ",", "\"\<Painting\>\"", ",", "\"\<Cinema\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "\"\<Sports\>\"", ",", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Football\>\"", ",", "\"\<Basketball\>\"", 
+             ",", "\"\<Tennis\>\"", ",", "\"\<Swimming\>\""}], "}"}], ",", 
+           "\[IndentingNewLine]", "        ", "_", ",", 
+           RowBox[{"{", "}"}]}], "\[IndentingNewLine]", "      ", "]"}], 
+         "\[IndentingNewLine]", "    ", "]"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<notes\>\"", "->", "\"\<String\>\""}]}], 
+      "\[IndentingNewLine]", "  ", "}"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Panel", "[", "\[IndentingNewLine]", "      ", 
+        RowBox[{
+         RowBox[{"Column", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", "        ", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Selection Summary\>\"", ",", "Bold", ",", "16"}], 
+             "]"}], ",", "\[IndentingNewLine]", "        ", 
+            RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", 
+            "        ", 
+            RowBox[{"Grid", "[", 
+             RowBox[{
+              RowBox[{"{", "\[IndentingNewLine]", "          ", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"\"\<Selected Category:\>\"", ",", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                    RowBox[{"params", "[", "\"\<category\>\"", "]"}], ",", 
+                    "Bold"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+                "          ", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<Selected Topic:\>\"", ",", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{
+                    RowBox[{"params", "[", "\"\<topic\>\"", "]"}], ",", 
+                    "Bold", ",", 
+                    RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}]}], "}"}], ",",
+                 "\[IndentingNewLine]", "          ", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<User Notes:\>\"", ",", 
+                  RowBox[{"params", "[", "\"\<notes\>\"", "]"}]}], "}"}]}], 
+               "\[IndentingNewLine]", "        ", "}"}], ",", 
+              RowBox[{"Alignment", "->", "Left"}], ",", 
+              RowBox[{"Spacings", "->", 
+               RowBox[{"{", 
+                RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}]}], 
+           "\[IndentingNewLine]", "      ", "}"}], "]"}], ",", 
+         "\[IndentingNewLine]", "      ", 
+         RowBox[{"ImageSize", "->", "400"}]}], "\[IndentingNewLine]", "    ", 
+        "]"}]}], "\[IndentingNewLine]", "  ", "]"}], ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", 
+         "->", "\"\<Dynamic Dependent Category Selector\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", 
+         "->", "\"\<Selecting a Category automatically submits and unlocks \
+the corresponding Topic dropdown via TemplateSlot.\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Confirm Selection\>\""}]}], 
+       "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PageTheme", "->", "\"\<Blue\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{4.002004269258222*^9, 4.002004270068184*^9}, {
+  4.002004343643712*^9, 4.002004358342235*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"72a80b20-24ec-48d5-8b9f-46f11265e1e4"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"7af71257-e604-4db9-afa1-7c61f3472cc9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"133665e6-d6ba-477f-ac30-adb02d862a4d"],
+
+Cell["Deploy the form: ", "CodeText",ExpressionUUID->"1ad4fb09-db66-44b3-a271-2a45096ec6e0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"co", "=", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{"form", ",", 
+    RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}]], "Input",
+ CellLabel->"In[73]:=",ExpressionUUID->"6d66f5b6-0259-45b0-b98b-e22c72ea06e2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/cfb9fd3d-d57c-430d-a637-083695fa5f04\"\
+", "https://www.wolframcloud.com/obj/cfb9fd3d-d57c-430d-a637-083695fa5f04"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/cfb9fd3d-d57c-430d-a637-083695fa5f04"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{4.0020042830432158`*^9, 4.0020043800118923`*^9},
+ CellLabel->"Out[73]=",ExpressionUUID->"330bba8a-0591-43aa-b7f2-133f913de829"]
+}, Open  ]],
+
+Cell["Retrieve the URL: ", "CodeText",ExpressionUUID->"9a3d8a76-e5e7-4e23-b9a7-17257c03d78a"],
+
+Cell[BoxData[
+ RowBox[{"co", "[", "\"\<URL\>\"", "]"}]], "Input",ExpressionUUID->"fba522ee-ff8a-4e37-8139-b8bcc0fb4d1d"],
+
+Cell[CellGroupData[{
+
+Cell["Try It in the Browser:", "Subsection",ExpressionUUID->"e909d0e0-85bf-45e0-a96f-86343f5c2adf"],
+
+Cell[TextData[{
+ "1. Open the URL. Note that initially, only the ",
+ StyleBox["Category",
+  FontWeight->Bold],
+ " dropdown and ",
+ StyleBox["Notes",
+  FontWeight->Bold],
+ " field are displayed."
+}], "Text",ExpressionUUID->"ef98c8b0-955f-4fc8-aceb-415302ea25ef"],
+
+Cell[TextData[{
+ "2. Select ",
+ StyleBox["\"Science\"",
+  FontWeight->Bold],
+ "."
+}], "Text",ExpressionUUID->"bffb4957-0785-45df-bff1-9a3b0969d6c1"],
+
+Cell[TextData[{
+ "3. Notice the form briefly reloads automatically: the ",
+ StyleBox["Topic",
+  FontWeight->Bold],
+ " dropdown appears populated with ",
+ StyleBox["Physics",
+  FontSlant->Italic],
+ ", ",
+ StyleBox["Chemistry",
+  FontSlant->Italic],
+ ", ",
+ StyleBox["Biology",
+  FontSlant->Italic],
+ ", and ",
+ StyleBox["Astronomy",
+  FontSlant->Italic],
+ "."
+}], "Text",ExpressionUUID->"c437cc72-74d6-415a-a2bf-ff4e43a4ceb2"],
+
+Cell[TextData[{
+ "4. Change the category to ",
+ StyleBox["\"Arts\"",
+  FontWeight->Bold],
+ "\[LongDash]the topic dropdown immediately updates to ",
+ StyleBox["Literature",
+  FontSlant->Italic],
+ ", ",
+ StyleBox["Music",
+  FontSlant->Italic],
+ ", ",
+ StyleBox["Painting",
+  FontSlant->Italic],
+ ", and ",
+ StyleBox["Cinema",
+  FontSlant->Italic],
+ ". "
+}], "Text",ExpressionUUID->"de40f73a-4da4-46d3-8eef-6ed61f6ee8ab"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"a93fe379-275e-452a-9c45-e4c732a660b2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Delete the Cloud Object", "Section",ExpressionUUID->"9a08a3ff-91de-4acb-904f-7e2216583d46"],
+
+Cell["When you are done testing, delete the cloud deployment: ", "CodeText",ExpressionUUID->"ef2552ae-db33-4c67-bcbf-07b5b4084b3e"],
+
+Cell[BoxData[
+ RowBox[{"DeleteObject", "[", "co", "]"}]], "Input",
+ CellLabel->"In[72]:=",ExpressionUUID->"caf9f143-f9d5-4275-8dbc-82a8bd13a31e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1d80e9aa-efac-45b8-8c3e-72c7ef9cabd2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 131, 0, 157, "Title",ExpressionUUID->"53682ab3-d2a3-4c8c-9a43-a5134d80163a"],
+Cell[710, 24, 1449, 35, 55, "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
+Cell[2162, 61, 596, 20, 49, "Text",ExpressionUUID->"c15de6e0-a9c0-4e60-ae5b-9eb21bb27c20"],
+Cell[CellGroupData[{
+Cell[2783, 85, 98, 0, 66, "Section",ExpressionUUID->"5863aa0a-5377-4f96-bf89-7f0c40b2abb5"],
+Cell[CellGroupData[{
+Cell[2906, 89, 373, 10, 53, "Subsection",ExpressionUUID->"fcffdab8-c46a-4f53-880c-004fe65b37c7"],
+Cell[3282, 101, 806, 19, 55, "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
+Cell[4091, 122, 471, 13, 55, "Text",ExpressionUUID->"72793333-6e0c-4519-943c-c54d8307d095"],
+Cell[4565, 137, 183, 5, 30, "Item",ExpressionUUID->"617585ff-ced7-4e58-b15b-e2f8493c836a"],
+Cell[4751, 144, 367, 7, 30, "Item",ExpressionUUID->"192f6f23-753a-4d83-9b1a-ee324eabe7be"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5155, 156, 154, 2, 53, "Subsection",ExpressionUUID->"b7925ba9-9ec5-40fe-a3bf-137f9291a10f"],
+Cell[5312, 160, 177, 3, 33, "Text",ExpressionUUID->"12f1cf0f-cf04-49c7-9d34-5002cfbf8aee"],
+Cell[5492, 165, 421, 10, 30, "Item",ExpressionUUID->"455bdfd7-ea44-4552-9e4d-38151caf855a"],
+Cell[5916, 177, 443, 10, 50, "Item",ExpressionUUID->"b41867ff-e2a6-4399-b0ff-ac83abf61598"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6396, 192, 117, 0, 53, "Subsection",ExpressionUUID->"1ff8f7d4-de6c-4ff6-ad51-3954669c0c83"],
+Cell[6516, 194, 998, 30, 55, "Text",ExpressionUUID->"05003ce8-b022-400b-9e53-e845dba5db78"],
+Cell[7517, 226, 627, 16, 55, "Text",ExpressionUUID->"7a74fea7-ce49-44bc-92b5-80ff94333f56"],
+Cell[8147, 244, 264, 6, 55, "Text",ExpressionUUID->"27935906-aef6-4e89-aefd-cb163c0710b1"],
+Cell[8414, 252, 1120, 29, 55, "Text",ExpressionUUID->"d9dae258-15d6-4bd4-b937-61d87bce7e7f"],
+Cell[9537, 283, 596, 20, 49, "Text",ExpressionUUID->"f562466d-13ae-465e-8548-8266d8ae00fa"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10182, 309, 114, 0, 66, "Section",ExpressionUUID->"64400821-6615-4d27-8515-7b1e2bc9751d"],
+Cell[10299, 311, 253, 4, 55, "Text",ExpressionUUID->"48c7f798-1048-413e-a122-ebc0c084f03f"],
+Cell[10555, 317, 4717, 97, 744, "Input",ExpressionUUID->"e3e9bcb1-0a6b-4372-9849-8c375b328c1c"],
+Cell[15275, 416, 4819, 98, 744, "Input",ExpressionUUID->"72a80b20-24ec-48d5-8b9f-46f11265e1e4"],
+Cell[20097, 516, 596, 20, 49, "Text",ExpressionUUID->"7af71257-e604-4db9-afa1-7c61f3472cc9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20730, 541, 104, 0, 66, "Section",ExpressionUUID->"133665e6-d6ba-477f-ac30-adb02d862a4d"],
+Cell[20837, 543, 92, 0, 36, "CodeText",ExpressionUUID->"1ad4fb09-db66-44b3-a271-2a45096ec6e0"],
+Cell[CellGroupData[{
+Cell[20954, 547, 243, 5, 29, "Input",ExpressionUUID->"6d66f5b6-0259-45b0-b98b-e22c72ea06e2"],
+Cell[21200, 554, 544, 11, 34, "Output",ExpressionUUID->"330bba8a-0591-43aa-b7f2-133f913de829"]
+}, Open  ]],
+Cell[21759, 568, 93, 0, 36, "CodeText",ExpressionUUID->"9a3d8a76-e5e7-4e23-b9a7-17257c03d78a"],
+Cell[21855, 570, 120, 1, 29, "Input",ExpressionUUID->"fba522ee-ff8a-4e37-8139-b8bcc0fb4d1d"],
+Cell[CellGroupData[{
+Cell[22000, 575, 99, 0, 53, "Subsection",ExpressionUUID->"e909d0e0-85bf-45e0-a96f-86343f5c2adf"],
+Cell[22102, 577, 261, 8, 33, "Text",ExpressionUUID->"ef98c8b0-955f-4fc8-aceb-415302ea25ef"],
+Cell[22366, 587, 148, 5, 33, "Text",ExpressionUUID->"bffb4957-0785-45df-bff1-9a3b0969d6c1"],
+Cell[22517, 594, 425, 17, 55, "Text",ExpressionUUID->"c437cc72-74d6-415a-a2bf-ff4e43a4ceb2"],
+Cell[22945, 613, 418, 17, 55, "Text",ExpressionUUID->"de40f73a-4da4-46d3-8eef-6ed61f6ee8ab"],
+Cell[23366, 632, 596, 20, 49, "Text",ExpressionUUID->"a93fe379-275e-452a-9c45-e4c732a660b2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24011, 658, 100, 0, 66, "Section",ExpressionUUID->"9a08a3ff-91de-4acb-904f-7e2216583d46"],
+Cell[24114, 660, 131, 0, 36, "CodeText",ExpressionUUID->"ef2552ae-db33-4c67-bcbf-07b5b4084b3e"],
+Cell[24248, 662, 145, 2, 29, "Input",ExpressionUUID->"caf9f143-f9d5-4275-8dbc-82a8bd13a31e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

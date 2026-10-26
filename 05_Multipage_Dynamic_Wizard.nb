@@ -1,0 +1,647 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     24305,        637]
+NotebookOptionsPosition[     20246,        567]
+NotebookOutlinePosition[     20638,        583]
+CellTagsIndexPosition[     20595,        580]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Multi-Page Dynamic Form Wizards", "Title",ExpressionUUID->"b676a1e5-ff77-475a-833b-05c7e9523bec"],
+
+Cell["\<\
+This notebook demonstrates how to construct multi-page dynamic form workflows \
+(wizards) where subsequent pages are generated programmatically based on user \
+inputs from earlier pages. \
+\>", "Text",ExpressionUUID->"0f275d51-7850-43a8-95a1-9fb9a41e291f"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"73aa7d8c-675c-4ae7-9dfa-cf7997facd11"],
+
+Cell[CellGroupData[{
+
+Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"397feff8-ad79-4544-8645-ca6ffde096d0"],
+
+Cell[TextData[{
+ StyleBox["Multi-Page Form Specification",
+  FontWeight->Bold],
+ ": Providing a list of page specifications to ",
+ Cell[BoxData[
+  TemplateBox[{
+   "FormFunction", "paclet:ref/FormFunction", 
+    "https://reference.wolfram.com/language/ref/FormFunction.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "36c28679-bddf-44c5-bca3-39a2b0e19912"],
+ ":"
+}], "Item",ExpressionUUID->"0d134bec-feb2-4593-b921-b7ec562b41a0"],
+
+Cell[TextData[{
+ "  ",
+ Cell[BoxData[
+  RowBox[{"FormFunction", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"page1", ",", "page2", ",", "..."}], "}"}], ",", 
+    "actionFunction"}], "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "b879c2d3-9670-4611-a703-5f4007238b7a"]
+}], "Text",ExpressionUUID->"926ca8fe-2c71-46c9-94ff-ff031b9931bc"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Dynamic Page Generation via Pure Functions",
+  FontWeight->Bold],
+ ":"
+}], "Item",ExpressionUUID->"5351b666-dce8-4c50-846a-f1c9c012a87c"],
+
+Cell[TextData[{
+ "The second and subsequent pages can be pure functions of all inputs \
+gathered so far: ",
+ Cell[BoxData[
+  RowBox[{"Function", "[", 
+   RowBox[{"prevInputs", ",", "..."}], "]"}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "fb4fb205-7d57-4c40-97bb-0c0e8cf4ebb3"],
+ "."
+}], "Subitem",ExpressionUUID->"abe8f06f-7405-4d42-afe9-492230f362bf"],
+
+Cell[TextData[{
+ "For example, if page 1 asks for a count ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["N", "TI"], TraditionalForm], "errors" -> {}, "input" -> "N", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "beb97ea3-0776-4aad-8a93-c5c03003c58f"],
+ ", page 2 can generate exactly ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["N", "TI"], TraditionalForm], "errors" -> {}, "input" -> "N", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "1cf683bc-4c4e-401a-b546-87c67daec36b"],
+ " custom input fields using ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Table", "paclet:ref/Table", 
+    "https://reference.wolfram.com/language/ref/Table.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "7bc3d1bb-bacb-4073-82d6-667089013621"],
+ "."
+}], "Subitem",ExpressionUUID->"8ec997a0-56a8-48b8-b841-087dbb78ce3a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Automatic Wizard Navigation",
+  FontWeight->Bold],
+ ":"
+}], "Item",ExpressionUUID->"650d8aab-a256-4213-9e9b-b5602ec63b94"],
+
+Cell[TextData[{
+ "The Wolfram Cloud form engine automatically provides ",
+ StyleBox["\"Next\"",
+  FontWeight->Bold],
+ " and ",
+ StyleBox["\"Back\"",
+  FontWeight->Bold],
+ " navigation between intermediate pages, and a ",
+ StyleBox["\"Submit\"",
+  FontWeight->Bold],
+ " button on the final page."
+}], "Subitem",ExpressionUUID->"8239b74a-4bc7-4307-863a-6119e31ad34c"],
+
+Cell["State is preserved across wizard steps.", "Subitem",ExpressionUUID->"05054561-3b35-472f-8a09-eb91da33430f"]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Aggregated Submission",
+  FontWeight->Bold],
+ ": The final action function receives an ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Association", "paclet:ref/Association", 
+    "https://reference.wolfram.com/language/ref/Association.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "150f9fbb-8da7-4432-9c27-8fd7bd5279b1"],
+ " containing values from all pages combined."
+}], "Item",ExpressionUUID->"55d92f96-8d3d-4444-a6b9-2687c61ed66a"],
+
+Cell[TextData[{
+ StyleBox["Cloud Deployment and Cleanup",
+  FontWeight->Bold],
+ ": Using ",
+ Cell[BoxData[
+  TemplateBox[{
+   "CloudDeploy", "paclet:ref/CloudDeploy", 
+    "https://reference.wolfram.com/language/ref/CloudDeploy.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "69d4fe9a-1b97-4736-9405-c952778e75ac"],
+ " and ",
+ Cell[BoxData[
+  TemplateBox[{
+   "DeleteObject", "paclet:ref/DeleteObject", 
+    "https://reference.wolfram.com/language/ref/DeleteObject.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "ca1fc57d-f0f1-4144-b43d-4f68a6d22b09"],
+ "."
+}], "Item",ExpressionUUID->"b8a2a7f5-8031-4615-a82a-d22e98263236"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"83ba6d41-4de5-45b1-9ec2-ff13c3825dff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Define the Multi-Page Wizard", "Section",ExpressionUUID->"68810c79-dc13-4e3f-bf95-48aab888faa2"],
+
+Cell["In this example: ", "Text",ExpressionUUID->"f9bef80a-0d55-4daa-874c-3e9cbd7d4a7a"],
+
+Cell[TextData[{
+ StyleBox["Page 1",
+  FontWeight->Bold],
+ ": Requests the project name and the number of team members (1 to 4)."
+}], "Item",ExpressionUUID->"a2839fab-dc0b-4de2-9dcc-7f0083d6fb4d"],
+
+Cell[TextData[{
+ StyleBox["Page 2",
+  FontWeight->Bold],
+ ": A pure function that inspects ",
+ Cell[BoxData[Cell["#teamSize",
+   Background->None,ExpressionUUID->"cc5de65f-7639-4f01-8239-e1bedd466fb2"]], 
+  "InlineCode",ExpressionUUID->"5f3bae7a-7e64-4c55-8f70-88a362ba72f0"],
+ " and generates a dedicated text input for each member."
+}], "Item",ExpressionUUID->"2291b32e-13e1-4891-b97c-d5de2fbc3aa9"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Action Function",
+  FontWeight->Bold],
+ ": Compiles all responses into a formatted project manifest and team roster \
+table."
+}], "Item",ExpressionUUID->"792f2939-c198-4b4e-a922-1df091e91ce7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"form", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"Page", " ", "1"}], ":", " ", 
+        RowBox[{"Project", " ", "Metadata"}]}], " ", "*)"}], 
+      "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{"{", "\[IndentingNewLine]", "      ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<projectName\>\"", ",", "\"\<Project Name:\>\""}], 
+           "}"}], "->", "\"\<String\>\""}], ",", "\[IndentingNewLine]", 
+         "      ", 
+         RowBox[{
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<teamSize\>\"", 
+            ",", "\"\<Number of Team Members (1-4):\>\""}], "}"}], "->", 
+          RowBox[{
+           RowBox[{"Restricted", "[", 
+            RowBox[{"\"\<Integer\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "4"}], "}"}]}], "]"}], "->", "2"}]}]}], 
+        "\[IndentingNewLine]", "    ", "}"}], ",", "\[IndentingNewLine]", 
+       "    ", "\[IndentingNewLine]", "    ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"Page", " ", "2"}], ":", " ", 
+         RowBox[{
+         "Dynamically", " ", "Generated", " ", "Fields", " ", "Based", " ", 
+          "on", " ", "Page", " ", "1"}]}], " ", "*)"}], "\[IndentingNewLine]",
+        "    ", 
+       RowBox[{"Function", "[", 
+        RowBox[{"prev", ",", "\[IndentingNewLine]", "      ", 
+         RowBox[{"Table", "[", "\[IndentingNewLine]", "        ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"\"\<member_\>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", "i", "]"}]}], ",", 
+              RowBox[{"\"\<Member \>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", "i", "]"}], " ", "<>", 
+               " ", "\"\< (Name and Role):\>\""}]}], "}"}], 
+            "->", "\"\<String\>\""}], ",", "\[IndentingNewLine]", "        ", 
+           
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"prev", "[", "\"\<teamSize\>\"", "]"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "      ", "]"}]}], "\[IndentingNewLine]", 
+        "    ", "]"}]}], "\[IndentingNewLine]", "  ", "}"}], ",", 
+     "\[IndentingNewLine]", "  ", "\[IndentingNewLine]", "  ", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Final", " ", "Action", " ", 
+       RowBox[{"Function", ":", " ", 
+        RowBox[{
+        "Processes", " ", "Data", " ", "From", " ", "All", " ", "Steps"}]}]}],
+       " ", "*)"}], "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"allData", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "members", "}"}], ",", "\[IndentingNewLine]", "      ", 
+         
+         RowBox[{
+          RowBox[{"members", "=", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"allData", "[", 
+              RowBox[{"\"\<member_\>\"", " ", "<>", " ", 
+               RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"allData", "[", "\"\<teamSize\>\"", "]"}]}], "}"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", "      ", 
+          RowBox[{"Panel", "[", "\[IndentingNewLine]", "        ", 
+           RowBox[{
+            RowBox[{"Column", "[", 
+             RowBox[{"{", "\[IndentingNewLine]", "          ", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{"\"\<Project Roster: \>\"", " ", "<>", " ", 
+                  RowBox[{"allData", "[", "\"\<projectName\>\"", "]"}]}], ",",
+                  "Bold", ",", "16"}], "]"}], ",", "\[IndentingNewLine]", 
+               "          ", 
+               RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", 
+               "          ", 
+               RowBox[{"Grid", "[", "\[IndentingNewLine]", "            ", 
+                RowBox[{
+                 RowBox[{
+                 "Prepend", "[", "\[IndentingNewLine]", "              ", 
+                  RowBox[{
+                   RowBox[{"MapIndexed", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#2", "]"}], ",", "#1"}], "}"}], 
+                    " ", "&"}], ",", "members"}], "]"}], ",", 
+                   "\[IndentingNewLine]", "              ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<#\>\"", ",", "\"\<Team Member\>\""}], 
+                    "}"}]}], "\[IndentingNewLine]", "            ", "]"}], ",",
+                  "\[IndentingNewLine]", "            ", 
+                 RowBox[{"Dividers", "->", "All"}], ",", 
+                 "\[IndentingNewLine]", "            ", 
+                 RowBox[{"FrameStyle", "->", 
+                  RowBox[{"GrayLevel", "[", "0.8", "]"}]}], ",", 
+                 "\[IndentingNewLine]", "            ", 
+                 RowBox[{"ItemStyle", "->", 
+                  RowBox[{"{", 
+                   RowBox[{"Automatic", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", "->", "Bold"}], "}"}]}], "}"}]}], ",", 
+                 "\[IndentingNewLine]", "            ", 
+                 RowBox[{"Spacings", "->", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}]}], "\[IndentingNewLine]", 
+                "          ", "]"}]}], "\[IndentingNewLine]", "        ", 
+              "}"}], "]"}], ",", "\[IndentingNewLine]", "        ", 
+            RowBox[{"ImageSize", "->", "420"}]}], "\[IndentingNewLine]", 
+           "      ", "]"}]}]}], "\[IndentingNewLine]", "    ", "]"}]}], 
+      "\[IndentingNewLine]", "  ", "]"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", 
+         "->", "\"\<Dynamic Multi-Page Project Setup Wizard\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", 
+         "->", "\"\<Page 2 dynamically generates member fields matching the \
+count chosen on Page 1.\>\""}], ",", "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", 
+         "->", "\"\<Generate Project Manifest\>\""}]}], "\[IndentingNewLine]",
+        "  ", "|>"}]}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"PageTheme", "->", "\"\<White\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{4.002004490987451*^9, 4.002004493133526*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"5c24a530-4f3a-4d15-b938-8711f8d552c9"]
+}, Open  ]],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"c71407bd-1301-4c7b-875a-28cff8311c76"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"9b3a9c25-ff0e-4ceb-8aeb-363ee483c6d9"],
+
+Cell["Deploy the multi-page wizard to the Wolfram Cloud: ", "CodeText",ExpressionUUID->"b2fd5ab0-3a08-43a7-960e-932002236ae8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"co", "=", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{"form", ",", 
+    RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}]], "Input",
+ CellLabel->"In[80]:=",ExpressionUUID->"41aacf7e-4437-4264-b777-e5c3f448d016"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/61a6eb1f-5d85-4068-89f7-6190f562ceea\"\
+", "https://www.wolframcloud.com/obj/61a6eb1f-5d85-4068-89f7-6190f562ceea"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/61a6eb1f-5d85-4068-89f7-6190f562ceea"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{4.002004507934291*^9},
+ CellLabel->"Out[80]=",ExpressionUUID->"6e51eadd-d195-4f9b-be82-1ad6f7bbd50e"]
+}, Open  ]],
+
+Cell["Retrieve the URL: ", "CodeText",ExpressionUUID->"b90a02a6-17f3-4b71-bfc6-d462c2c374e0"],
+
+Cell[BoxData[
+ RowBox[{"co", "[", "\"\<URL\>\"", "]"}]], "Input",ExpressionUUID->"7fb21004-af8d-4081-a720-a0659d7830c1"],
+
+Cell[CellGroupData[{
+
+Cell["Try It in the Browser:", "Subsection",ExpressionUUID->"c9472a2b-40d3-4244-b44c-7faf800acf33"],
+
+Cell[TextData[{
+ "1. Open the URL. Page 1 asks for the ",
+ StyleBox["Project Name",
+  FontWeight->Bold],
+ " and ",
+ StyleBox["Number of Team Members",
+  FontWeight->Bold],
+ " (default: 2)."
+}], "Text",ExpressionUUID->"ff74fa26-a2f0-4930-8013-0f288ce79df7"],
+
+Cell[TextData[{
+ "2. Enter a project name, change the count to ",
+ StyleBox["3",
+  FontWeight->Bold],
+ ", and click ",
+ StyleBox["Next",
+  FontWeight->Bold],
+ "."
+}], "Text",ExpressionUUID->"5137e838-5215-422a-b034-ef63f837ff6a"],
+
+Cell[TextData[{
+ "3. Page 2 dynamically presents exactly ",
+ StyleBox["3 input fields",
+  FontWeight->Bold],
+ " for Member 1, Member 2, and Member 3."
+}], "Text",ExpressionUUID->"409e41d7-e4c8-4ecb-ae6d-c88423411b75"],
+
+Cell["\<\
+4. Fill in the member details and submit to see the compiled project roster. \
+\
+\>", "Text",ExpressionUUID->"0f7cb32f-8a3d-4931-808c-34441c214c62"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"da37fda2-3ff5-48bc-8f3b-5e4f1dc1a3a2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Delete the Cloud Object", "Section",ExpressionUUID->"207911a5-99b7-43b0-8a9d-9633a26df4e0"],
+
+Cell["When testing is complete, delete the cloud deployment: ", "CodeText",ExpressionUUID->"08da00ae-dca2-4d78-86f3-cd7064a3f1e6"],
+
+Cell[BoxData[
+ RowBox[{"DeleteObject", "[", "co", "]"}]], "Input",
+ CellLabel->"In[78]:=",ExpressionUUID->"b9da18b8-5b96-451d-ad3f-2a88166dee9b"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1d80e9aa-efac-45b8-8c3e-72c7ef9cabd2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 103, 0, 96, "Title",ExpressionUUID->"b676a1e5-ff77-475a-833b-05c7e9523bec"],
+Cell[682, 24, 266, 4, 55, "Text",ExpressionUUID->"0f275d51-7850-43a8-95a1-9fb9a41e291f"],
+Cell[951, 30, 596, 20, 49, "Text",ExpressionUUID->"73aa7d8c-675c-4ae7-9dfa-cf7997facd11"],
+Cell[CellGroupData[{
+Cell[1572, 54, 98, 0, 66, "Section",ExpressionUUID->"397feff8-ad79-4544-8645-ca6ffde096d0"],
+Cell[1673, 56, 802, 20, 30, "Item",ExpressionUUID->"0d134bec-feb2-4593-b921-b7ec562b41a0"],
+Cell[2478, 78, 449, 13, 33, "Text",ExpressionUUID->"926ca8fe-2c71-46c9-94ff-ff031b9931bc"],
+Cell[CellGroupData[{
+Cell[2952, 95, 164, 4, 30, "Item",ExpressionUUID->"5351b666-dce8-4c50-846a-f1c9c012a87c"],
+Cell[3119, 101, 461, 12, 44, "Subitem",ExpressionUUID->"abe8f06f-7405-4d42-afe9-492230f362bf"],
+Cell[3583, 115, 1334, 34, 25, "Subitem",ExpressionUUID->"8ec997a0-56a8-48b8-b841-087dbb78ce3a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4954, 154, 149, 4, 30, "Item",ExpressionUUID->"650d8aab-a256-4213-9e9b-b5602ec63b94"],
+Cell[5106, 160, 365, 11, 44, "Subitem",ExpressionUUID->"8239b74a-4bc7-4307-863a-6119e31ad34c"],
+Cell[5474, 173, 113, 0, 25, "Subitem",ExpressionUUID->"05054561-3b35-472f-8a09-eb91da33430f"]
+}, Open  ]],
+Cell[5602, 176, 828, 20, 50, "Item",ExpressionUUID->"55d92f96-8d3d-4444-a6b9-2687c61ed66a"],
+Cell[6433, 198, 1372, 36, 30, "Item",ExpressionUUID->"b8a2a7f5-8031-4615-a82a-d22e98263236"],
+Cell[7808, 236, 596, 20, 49, "Text",ExpressionUUID->"83ba6d41-4de5-45b1-9ec2-ff13c3825dff"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8441, 261, 105, 0, 66, "Section",ExpressionUUID->"68810c79-dc13-4e3f-bf95-48aab888faa2"],
+Cell[8549, 263, 88, 0, 33, "Text",ExpressionUUID->"f9bef80a-0d55-4daa-874c-3e9cbd7d4a7a"],
+Cell[8640, 265, 195, 4, 30, "Item",ExpressionUUID->"a2839fab-dc0b-4de2-9dcc-7f0083d6fb4d"],
+Cell[8838, 271, 401, 8, 30, "Item",ExpressionUUID->"2291b32e-13e1-4891-b97c-d5de2fbc3aa9"],
+Cell[CellGroupData[{
+Cell[9264, 283, 219, 5, 30, "Item",ExpressionUUID->"792f2939-c198-4b4e-a922-1df091e91ce7"],
+Cell[9486, 290, 6806, 145, 1030, "Input",ExpressionUUID->"5c24a530-4f3a-4d15-b938-8711f8d552c9"]
+}, Open  ]],
+Cell[16307, 438, 596, 20, 49, "Text",ExpressionUUID->"c71407bd-1301-4c7b-875a-28cff8311c76"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16940, 463, 104, 0, 66, "Section",ExpressionUUID->"9b3a9c25-ff0e-4ceb-8aeb-363ee483c6d9"],
+Cell[17047, 465, 126, 0, 36, "CodeText",ExpressionUUID->"b2fd5ab0-3a08-43a7-960e-932002236ae8"],
+Cell[CellGroupData[{
+Cell[17198, 469, 243, 5, 29, "Input",ExpressionUUID->"41aacf7e-4437-4264-b777-e5c3f448d016"],
+Cell[17444, 476, 518, 11, 34, "Output",ExpressionUUID->"6e51eadd-d195-4f9b-be82-1ad6f7bbd50e"]
+}, Open  ]],
+Cell[17977, 490, 93, 0, 36, "CodeText",ExpressionUUID->"b90a02a6-17f3-4b71-bfc6-d462c2c374e0"],
+Cell[18073, 492, 120, 1, 29, "Input",ExpressionUUID->"7fb21004-af8d-4081-a720-a0659d7830c1"],
+Cell[CellGroupData[{
+Cell[18218, 497, 99, 0, 53, "Subsection",ExpressionUUID->"c9472a2b-40d3-4244-b44c-7faf800acf33"],
+Cell[18320, 499, 256, 8, 33, "Text",ExpressionUUID->"ff74fa26-a2f0-4930-8013-0f288ce79df7"],
+Cell[18579, 509, 229, 8, 33, "Text",ExpressionUUID->"5137e838-5215-422a-b034-ef63f837ff6a"],
+Cell[18811, 519, 217, 5, 33, "Text",ExpressionUUID->"409e41d7-e4c8-4ecb-ae6d-c88423411b75"],
+Cell[19031, 526, 158, 3, 33, "Text",ExpressionUUID->"0f7cb32f-8a3d-4931-808c-34441c214c62"],
+Cell[19192, 531, 596, 20, 49, "Text",ExpressionUUID->"da37fda2-3ff5-48bc-8f3b-5e4f1dc1a3a2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19837, 557, 100, 0, 66, "Section",ExpressionUUID->"207911a5-99b7-43b0-8a9d-9633a26df4e0"],
+Cell[19940, 559, 130, 0, 36, "CodeText",ExpressionUUID->"08da00ae-dca2-4d78-86f3-cd7064a3f1e6"],
+Cell[20073, 561, 145, 2, 29, "Input",ExpressionUUID->"b9da18b8-5b96-451d-ad3f-2a88166dee9b"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

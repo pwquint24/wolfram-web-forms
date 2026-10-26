@@ -1,0 +1,575 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     21610,        565]
+NotebookOptionsPosition[     18396,        509]
+NotebookOutlinePosition[     18786,        525]
+CellTagsIndexPosition[     18743,        522]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Persistent Forms with FormPage", "Title",ExpressionUUID->"6db50079-238b-4adc-829e-ced301a093e8"],
+
+Cell[TextData[{
+ "This notebook demonstrates ",
+ Cell[BoxData[
+  TemplateBox[{
+   "FormPage", "paclet:ref/FormPage", 
+    "https://reference.wolfram.com/language/ref/FormPage.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "f9dd19d7-0903-47bc-ae56-9cbddc8e6e1a"],
+ ", which displays both the input form and the computational result on the \
+same web page. "
+}], "Text",ExpressionUUID->"bfcc859f-2888-4848-ba79-3545fa14d68d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"b5cef393-6e88-47a7-ad0e-e43044710052"],
+
+Cell[CellGroupData[{
+
+Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"5e963e8e-eb93-4d70-a0be-88609e4e8101"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+   "FormPage", "paclet:ref/FormPage", 
+    "https://reference.wolfram.com/language/ref/FormPage.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "232a3354-b532-4b9c-a161-16e0e6f5ed28"],
+ " vs. ",
+ Cell[BoxData[
+  TemplateBox[{
+   "FormFunction", "paclet:ref/FormFunction", 
+    "https://reference.wolfram.com/language/ref/FormFunction.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "d7a42338-379d-4027-a7c2-4a1d3d00ec22"],
+ ":"
+}], "Item",ExpressionUUID->"ee92d78f-4d70-4c4a-9f92-1f457d21ec40"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+   "FormFunction", "paclet:ref/FormFunction", 
+    "https://reference.wolfram.com/language/ref/FormFunction.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "9b45895e-6717-41d6-b716-53a4e4922b06"],
+ " displays a form, and upon submission replaces the page entirely with the \
+output."
+}], "Subitem",ExpressionUUID->"fe10711f-748c-4ea8-9fed-f1a22f4c416b"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  TemplateBox[{
+   "FormPage", "paclet:ref/FormPage", 
+    "https://reference.wolfram.com/language/ref/FormPage.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "ce2dfa9b-0d9d-425d-8982-2c52047cd59b"],
+ " keeps both the input controls and the resulting output visible on the same \
+page. After submission, users can adjust parameters and resubmit \
+immediately."
+}], "Subitem",ExpressionUUID->"79c9d1af-22f8-4d68-9c18-47c855d590e0"]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Layout Specification",
+  FontWeight->Bold],
+ ": The third argument can be ",
+ Cell[BoxData["\"\<ResultBelow\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "948534c3-2b7d-4517-b87f-ad59c5c98c31"],
+ " or ",
+ Cell[BoxData["\"\<ResultAbove\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "339a08ea-6f23-48e2-8ebf-3a35f41558ee"],
+ " to control where the output appears relative to the form."
+}], "Item",ExpressionUUID->"98ba0d08-449a-4d80-bb18-7c7c7ac4eb58"],
+
+Cell[TextData[{
+ StyleBox["Enumeration and Function Mapping",
+  FontWeight->Bold],
+ ": Form choices can map human-readable labels to symbolic functions (e.g., \
+",
+ Cell[BoxData[Cell["\"Sine Wave\" -> Sin",
+   Background->None,ExpressionUUID->"260595d9-4ab6-4fc5-b249-75a79579d134"]], 
+  "InlineCode",ExpressionUUID->"bfbae836-3c0e-4f71-b02b-38ed903fd150"],
+ ")."
+}], "Item",ExpressionUUID->"f418ca37-0896-4e78-9cf7-2a983368cce1"],
+
+Cell[TextData[{
+ StyleBox["Styling and Theming",
+  FontWeight->Bold],
+ ": Using ",
+ Cell[BoxData[
+  RowBox[{"PageTheme", "->", "\"\<Navy\>\""}]], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "e223d954-64e2-4d2d-9bcf-d1fde9899f4d"],
+ " and ",
+ Cell[BoxData[
+  TemplateBox[{
+   "AppearanceRules", "paclet:ref/AppearanceRules", 
+    "https://reference.wolfram.com/language/ref/AppearanceRules.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "df693adf-ac33-4825-bd5a-8bc3c81d7391"],
+ " to create a polished dashboard look."
+}], "Item",ExpressionUUID->"bd2ba934-3b11-4fc5-9a7b-85f3bc5e5d2a"],
+
+Cell[TextData[{
+ StyleBox["Cloud Deployment and Cleanup",
+  FontWeight->Bold],
+ ": Using ",
+ Cell[BoxData[
+  TemplateBox[{
+   "CloudDeploy", "paclet:ref/CloudDeploy", 
+    "https://reference.wolfram.com/language/ref/CloudDeploy.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "f24ba19e-c40b-465c-9a17-b801ec5812cd"],
+ " and ",
+ Cell[BoxData[
+  TemplateBox[{
+   "DeleteObject", "paclet:ref/DeleteObject", 
+    "https://reference.wolfram.com/language/ref/DeleteObject.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "0790337a-03bf-430c-a8bc-997df2289184"],
+ "."
+}], "Item",ExpressionUUID->"616b78f3-486a-4df0-9bcf-f483f71aff3b"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"32c12f8d-b008-439b-b5b5-8c706e6691c9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Define the FormPage", "Section",ExpressionUUID->"d52b0fe7-8c56-4f5d-a4f6-722048f85a77"],
+
+Cell["\<\
+This form implements an interactive mathematical waveform visualizer. Users \
+choose a waveform type, frequency multiplier, range, and plot color. \
+\>", "Text",ExpressionUUID->"f0decf30-d489-4040-aa94-520f9dcfa315"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"page", "=", 
+   RowBox[{"FormPage", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<function\>\"", ",", "\"\<Waveform Type:\>\""}], "}"}], "->", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", "      ", 
+          RowBox[{
+           RowBox[{"\"\<Sine Wave\>\"", "->", "Sin"}], ",", 
+           "\[IndentingNewLine]", "      ", 
+           RowBox[{"\"\<Damped Sine\>\"", "->", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Exp", "[", 
+                RowBox[{
+                 RowBox[{"-", "#"}], "/", "5"}], "]"}], "*", 
+               RowBox[{"Sin", "[", "#", "]"}]}], " ", "&"}], ")"}]}], ",", 
+           "\[IndentingNewLine]", "      ", 
+           RowBox[{"\"\<Cosine Wave\>\"", "->", "Cos"}], ",", 
+           "\[IndentingNewLine]", "      ", 
+           RowBox[{"\"\<Sinc Wave\>\"", "->", "Sinc"}]}], 
+          "\[IndentingNewLine]", "    ", "}"}], "->", "Sin"}]}], ",", 
+       "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<frequency\>\"", ",", "\"\<Frequency Multiplier:\>\""}], 
+         "}"}], "->", 
+        RowBox[{
+         RowBox[{"Restricted", "[", 
+          RowBox[{"\"\<Number\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{"0.1", ",", "10."}], "}"}]}], "]"}], "->", "1.0"}]}], ",",
+        "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<range\>\"", ",", "\"\<Plot Range (0 to X):\>\""}], 
+         "}"}], "->", 
+        RowBox[{
+         RowBox[{"Restricted", "[", 
+          RowBox[{"\"\<Number\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"2", "*", "Pi"}], ",", 
+             RowBox[{"10", "*", "Pi"}]}], "}"}]}], "]"}], "->", 
+         RowBox[{"4", "*", "Pi"}]}]}], ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<lineColor\>\"", ",", "\"\<Waveform Color:\>\""}], "}"}],
+         "->", 
+        RowBox[{"\"\<Color\>\"", "->", "Blue"}]}]}], "\[IndentingNewLine]", 
+      "  ", "}"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Plot", "[", "\[IndentingNewLine]", "      ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"params", "[", "\"\<function\>\"", "]"}], "[", 
+          RowBox[{
+           RowBox[{"params", "[", "\"\<frequency\>\"", "]"}], "*", "x"}], 
+          "]"}], ",", "\[IndentingNewLine]", "      ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", 
+           RowBox[{"params", "[", "\"\<range\>\"", "]"}]}], "}"}], ",", 
+         "\[IndentingNewLine]", "      ", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", 
+            RowBox[{"params", "[", "\"\<lineColor\>\"", "]"}]}], "}"}]}], ",",
+          "\[IndentingNewLine]", "      ", 
+         RowBox[{"PlotRange", "->", "All"}], ",", "\[IndentingNewLine]", 
+         "      ", 
+         RowBox[{"GridLines", "->", "Automatic"}], ",", "\[IndentingNewLine]",
+          "      ", 
+         RowBox[{"Frame", "->", "True"}], ",", "\[IndentingNewLine]", 
+         "      ", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<x\>\"", ",", "\"\<f(x)\>\""}], "}"}]}], ",", 
+         "\[IndentingNewLine]", "      ", 
+         RowBox[{"PlotLabel", "->", 
+          RowBox[{"Style", "[", 
+           RowBox[{"\"\<Waveform Analysis\>\"", ",", "Bold", ",", "14"}], 
+           "]"}]}], ",", "\[IndentingNewLine]", "      ", 
+         RowBox[{"ImageSize", "->", "550"}]}], "\[IndentingNewLine]", "    ", 
+        "]"}]}], "\[IndentingNewLine]", "  ", "]"}], ",", 
+     "\[IndentingNewLine]", "  ", "\"\<ResultBelow\>\"", ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", 
+         "->", "\"\<Interactive Waveform Visualizer\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", 
+         "->", "\"\<Adjust parameters below. The plot updates on the same \
+page upon submission.\>\""}], ",", "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Update Plot\>\""}]}], 
+       "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     "  ", 
+     RowBox[{"PageTheme", "->", "\"\<Navy\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"b4a29bc1-f237-4e5c-bf23-671c1ea851cc"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"79a56fec-7fe0-438b-b7fc-758aeb4fc5b5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"14a1396f-4ae0-4a52-85e4-bee5e091f02e"],
+
+Cell[TextData[{
+ "Deploy the ",
+ Cell[BoxData[
+  TemplateBox[{
+   "FormPage", "paclet:ref/FormPage", 
+    "https://reference.wolfram.com/language/ref/FormPage.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "ff72ea19-4a34-4cd5-a114-8caa3042d85c"],
+ " to the Wolfram Cloud with public permissions: "
+}], "CodeText",ExpressionUUID->"9e1ebb6d-d8fe-47f3-93e0-cac690c0e54d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"co", "=", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{"page", ",", 
+    RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"76773ead-095e-44d7-8ae1-f4c3cdbae617"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/540e13ab-0c08-4c68-9d56-15bdd81bd882\"\
+", "https://www.wolframcloud.com/obj/540e13ab-0c08-4c68-9d56-15bdd81bd882"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/540e13ab-0c08-4c68-9d56-15bdd81bd882"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{4.00191384461863*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"115c49bd-2a5e-4f83-b6d3-651cc5ef88f0"]
+}, Open  ]],
+
+Cell["Retrieve and visit the web address: ", "CodeText",ExpressionUUID->"5e659aa4-0145-49f3-bc16-eb8546801b9f"],
+
+Cell[BoxData[
+ RowBox[{"co", "[", "\"\<URL\>\"", "]"}]], "Input",ExpressionUUID->"227e933e-0868-4f9a-a175-f87db19132ff"],
+
+Cell["Notice when you open the URL:", "Text",ExpressionUUID->"2fdf684b-2a17-4f79-9026-c42e7110acf3"],
+
+Cell["1. An initial form is displayed.", "Text",ExpressionUUID->"0aac1b09-26e1-44a3-829c-005584d417af"],
+
+Cell["\<\
+2. After submitting, your plot appears beneath the form, while the form \
+fields retain your values so you can tweak them and re-submit immediately. \
+\>", "Text",ExpressionUUID->"8ef4607f-c7a5-4aee-b7b9-8578680b46c6"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"d1208ff6-345c-4eb3-ad72-ae2ef3308973"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Delete the Cloud Object", "Section",ExpressionUUID->"ae7e42b1-3988-4e05-ab0b-670eee813b43"],
+
+Cell["To remove the deployed web form from the cloud: ", "CodeText",ExpressionUUID->"e1876414-b273-4a71-8230-7febc253e1e2"],
+
+Cell[BoxData[
+ RowBox[{"DeleteObject", "[", "co", "]"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"3296093a-e292-409f-8ca3-eb48f3887623"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"1d80e9aa-efac-45b8-8c3e-72c7ef9cabd2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 102, 0, 96, "Title",ExpressionUUID->"6db50079-238b-4adc-829e-ced301a093e8"],
+Cell[681, 24, 797, 19, 55, "Text",ExpressionUUID->"bfcc859f-2888-4848-ba79-3545fa14d68d"],
+Cell[1481, 45, 596, 20, 49, "Text",ExpressionUUID->"b5cef393-6e88-47a7-ad0e-e43044710052"],
+Cell[CellGroupData[{
+Cell[2102, 69, 98, 0, 66, "Section",ExpressionUUID->"5e963e8e-eb93-4d70-a0be-88609e4e8101"],
+Cell[CellGroupData[{
+Cell[2225, 73, 1287, 33, 30, "Item",ExpressionUUID->"ee92d78f-4d70-4c4a-9f92-1f457d21ec40"],
+Cell[3515, 108, 773, 18, 25, "Subitem",ExpressionUUID->"fe10711f-748c-4ea8-9fed-f1a22f4c416b"],
+Cell[4291, 128, 835, 19, 44, "Subitem",ExpressionUUID->"79c9d1af-22f8-4d68-9c18-47c855d590e0"]
+}, Open  ]],
+Cell[5141, 150, 695, 18, 50, "Item",ExpressionUUID->"98ba0d08-449a-4d80-bb18-7c7c7ac4eb58"],
+Cell[5839, 170, 430, 9, 50, "Item",ExpressionUUID->"f418ca37-0896-4e78-9cf7-2a983368cce1"],
+Cell[6272, 181, 1062, 28, 50, "Item",ExpressionUUID->"bd2ba934-3b11-4fc5-9a7b-85f3bc5e5d2a"],
+Cell[7337, 211, 1372, 36, 30, "Item",ExpressionUUID->"616b78f3-486a-4df0-9bcf-f483f71aff3b"],
+Cell[8712, 249, 596, 20, 49, "Text",ExpressionUUID->"32c12f8d-b008-439b-b5b5-8c706e6691c9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9345, 274, 96, 0, 66, "Section",ExpressionUUID->"d52b0fe7-8c56-4f5d-a4f6-722048f85a77"],
+Cell[9444, 276, 226, 3, 55, "Text",ExpressionUUID->"f0decf30-d489-4040-aa94-520f9dcfa315"],
+Cell[9673, 281, 4726, 107, 703, "Input",ExpressionUUID->"b4a29bc1-f237-4e5c-bf23-671c1ea851cc"],
+Cell[14402, 390, 596, 20, 49, "Text",ExpressionUUID->"79a56fec-7fe0-438b-b7fc-758aeb4fc5b5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15035, 415, 104, 0, 66, "Section",ExpressionUUID->"14a1396f-4ae0-4a52-85e4-bee5e091f02e"],
+Cell[15142, 417, 742, 18, 36, "CodeText",ExpressionUUID->"9e1ebb6d-d8fe-47f3-93e0-cac690c0e54d"],
+Cell[CellGroupData[{
+Cell[15909, 439, 242, 5, 29, "Input",ExpressionUUID->"76773ead-095e-44d7-8ae1-f4c3cdbae617"],
+Cell[16154, 446, 516, 11, 34, "Output",ExpressionUUID->"115c49bd-2a5e-4f83-b6d3-651cc5ef88f0"]
+}, Open  ]],
+Cell[16685, 460, 111, 0, 36, "CodeText",ExpressionUUID->"5e659aa4-0145-49f3-bc16-eb8546801b9f"],
+Cell[16799, 462, 120, 1, 29, "Input",ExpressionUUID->"227e933e-0868-4f9a-a175-f87db19132ff"],
+Cell[16922, 465, 100, 0, 33, "Text",ExpressionUUID->"2fdf684b-2a17-4f79-9026-c42e7110acf3"],
+Cell[17025, 467, 103, 0, 33, "Text",ExpressionUUID->"0aac1b09-26e1-44a3-829c-005584d417af"],
+Cell[17131, 469, 228, 3, 55, "Text",ExpressionUUID->"8ef4607f-c7a5-4aee-b7b9-8578680b46c6"],
+Cell[17362, 474, 596, 20, 49, "Text",ExpressionUUID->"d1208ff6-345c-4eb3-ad72-ae2ef3308973"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17995, 499, 100, 0, 66, "Section",ExpressionUUID->"ae7e42b1-3988-4e05-ab0b-670eee813b43"],
+Cell[18098, 501, 123, 0, 36, "CodeText",ExpressionUUID->"e1876414-b273-4a71-8230-7febc253e1e2"],
+Cell[18224, 503, 144, 2, 29, "Input",ExpressionUUID->"3296093a-e292-409f-8ca3-eb48f3887623"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
