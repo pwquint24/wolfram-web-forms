@@ -1,0 +1,235 @@
+* Wolfram Web Form Technology: Architecture, Controllability, and Dynamic Interactivity
+This document provides a comprehensive analysis of Wolfram Language's
+Web Form technology (=FormFunction=, =FormPage=, and =FormObject=), its
+controllability, and how it handles dynamic updates between form fields.
+
+--------------
+
+** 1. Executive Summary
+- *Controllability*: Extremely high at a symbolic level. You can define
+  field validation via =Interpreter=, assign concrete UI controls
+  (=Slider=, =RadioButtonBar=, =PopupMenu=, =Checkbox=), construct
+  custom grid/column layouts via =FormLayoutFunction=, and style forms
+  using =AppearanceRules= and =PageTheme=.
+- *Compatibility with =Dynamic[...]=*: *Web forms do /not/ use
+  client-side notebook-style =Dynamic= bindings.* In a web form,
+  =Dynamic[x]= is not compiled into a live reactive JavaScript
+  data-binding; it is treated as a held/evaluated expression (which
+  renders as literal text like =value="Dynamic[0]"=).
+- *How Web Forms achieve dynamic interdependence*: Through the *Wolfram
+  Templating Engine* (=TemplateSlot=, =TemplateExpression=,
+  =TemplateIf=). When a field depends on an earlier field via
+  =TemplateSlot=, the engine:
+  1. Hides dependent fields until prerequisite fields are supplied.
+  2. Tags prerequisite fields with =data-autosubmit="autosubmit"=.
+  3. Triggers an automatic server-side re-evaluation upon input change,
+     returning the updated form with the newly unlocked and populated
+     fields.
+- *For real-time, zero-reload dynamic interfaces*: Use
+  *=CloudDeploy[DynamicModule[...]]=* or
+  *=CloudDeploy[Manipulate[...]]=* (which leverage Wolfram Cloud CDF /
+  WebSockets), or build a client-side frontend backed by Wolfram
+  *=APIFunction=* endpoints.
+
+--------------
+
+** 2. Core Building Blocks
+*** =FormFunction=
+Represents an active, submittable form that evaluates an action function
+upon completion:
+
+#+begin_src wl
+FormFunction[formspec, func, fmt]
+#+end_src
+
+- Can be deployed directly to the Wolfram Cloud via =CloudDeploy=.
+- Can be evaluated locally or rendered into standard HTTP responses
+  using =GenerateHTTPResponse=.
+
+*** =FormPage=
+Interchangeable with =FormFunction=, but designed to keep the form and
+the result visible on the same page. After submission, the page renders
+both the calculation result and a ready-to-re-submit form.
+
+*** =FormObject=
+The underlying symbolic specification of form fields, validation
+metadata, defaults, controls, and appearance rules:
+
+#+begin_src wl
+FormObject[{
+  "fieldName" -> <|
+    "Interpreter" -> type,
+    "Label" -> "Display Name",
+    "Control" -> controlType,
+    "Required" -> True,
+    "Hint" -> "Helpful placeholder",
+    "Help" -> "Detailed explanatory tooltip"
+  |>
+}]
+#+end_src
+
+--------------
+
+** 3. Controllability
+Wolfram Web Forms provide symbolic control across four main dimensions:
+
+*** A. Field Types & Semantic Validation (=Interpreter=)
+Every field uses the Wolfram =Interpreter= engine to validate, parse,
+and coerce user strings into native Wolfram expressions: - *Primitives*:
+="String"=, ="Integer"=, ="Number"=, ="Boolean"=, ="Date"=,
+="EmailAddress"=, ="URL"=. - *Knowledgebase / Entities*: ="Country"=,
+="USState"=, ="City"=, ="Company"=, ="Color"=, ="Location"=. -
+*Restrictions & Options*:
+=wl   "age" -> Restricted["Integer", {18, 120}]   "fruit" -> {"apple", "banana", "orange"}   "mapping" -> {"Small" -> 1, "Medium" -> 2, "Large" -> 3}=
+
+*** B. UI Controls (="Control"=)
+You can override default controls with symbolic Wolfram control
+primitives, which compile into HTML5 inputs: - =Slider= ->
+=<input type="range" min="..." max="..." step="...">= - =RadioButtonBar=
+-> =<input type="radio">= - =PopupMenu= ->
+=<select><option>...</option></select>= - =Checkbox= ->
+=<input type="checkbox">= - Custom control functions:
+=wl   "location" -> <|     "Interpreter" -> "Location",     "Control" -> (InputField[#, FieldSize -> 20] &)   |>=
+
+*** C. Layout Customization (=FormLayoutFunction=)
+Rather than default vertical or horizontal stacks, =FormLayoutFunction=
+gives complete programmatic freedom to lay out controls using =Grid=,
+=Column=, =Row=, or =Panel=:
+
+#+begin_src wl
+FormFunction[
+  {
+    "first" -> "String",
+    "last" -> "String",
+    "age" -> "Integer"
+  },
+  Identity,
+  FormLayoutFunction -> Function[
+    Grid[{
+      {"First Name:", #["first", "Control"], "Last Name:", #["last", "Control"]},
+      {"Age:", #["age", "Control"], SpanFromLeft, SpanFromLeft}
+    }]
+  ]
+]
+#+end_src
+
+The parameter =#= allows querying: - =#["key", "Control"]=: The bare
+input element. - =#["key", "Label"]=: The label text. -
+=#["key", "Help"]=: Any associated help text. - =#["key", "Required"]=:
+Whether the field is marked required.
+
+*** D. Theming & Styling (=AppearanceRules=, =PageTheme=)
+- *Appearance Rules*:
+
+  #+begin_src wl
+  AppearanceRules -> <|
+    "Title" -> "Customer Registration",
+    "Description" -> "Please complete the form below.",
+    "SubmitLabel" -> "Save & Continue",
+    "CancelLabel" -> "Reset",
+    "ItemLayout" -> "Horizontal"
+  |>
+  #+end_src
+
+- *Themes*: =PageTheme -> "White"= (default), ="Cerulean"=, ="Navy"=,
+  ="Light"=, etc.
+
+--------------
+
+** 4. Dynamic Behavior & Field Interdependence
+*** Why =Dynamic[...]= Is Not Used in Web Forms
+In notebook interfaces, =Dynamic= and =DynamicModule= establish
+real-time, client-side reactive expressions via the front-end preemptive
+evaluation loop.
+
+In =FormFunction= and =FormPage=: - Forms conform to HTTP
+request/response semantics. - Specifying =Dynamic[x]= inside a field or
+layout renders =Dynamic[...]= unevaluated into the HTML
+(e.g. =value="Dynamic[0]"=). - It does *not* create a browser-side
+reactive variable.
+
+*** How Dynamic Forms Work: The Template Slot Engine
+Web Forms achieve dependent fields on a single page using Wolfram's
+templating constructs: - =TemplateSlot["fieldName"]= -
+=TemplateExpression[...]= - =TemplateIf[...]=
+
+**** Example: Cascading Dropdowns
+#+begin_src wl
+form = FormFunction[
+  {
+    "category" -> {"fruits", "vegetables"},
+    "item" -> TemplateExpression[
+      If[TemplateSlot["category"] == "fruits",
+        {"apple", "banana", "orange"},
+        {"carrot", "broccoli", "spinach"}
+      ]
+    ]
+  },
+  #category <> " -> " <> #item &
+];
+#+end_src
+
+**** Under the Hood
+1. *Initial Page Load*:
+   - The engine analyzes dependencies. Because ="item"= references
+     =TemplateSlot["category"]=, ="item"= is withheld.
+   - Only =<select name="category" data-autosubmit="autosubmit">= is
+     sent to the client.
+2. *User Interaction*:
+   - The user selects ="fruits"=.
+   - The attribute =data-autosubmit="autosubmit"= triggers an immediate
+     form submit/POST back to the Wolfram engine.
+3. *Server Re-evaluation*:
+   - The engine binds =TemplateSlot["category"] = "fruits"=.
+   - =TemplateExpression= evaluates to ={"apple", "banana", "orange"}=.
+   - The page is served with both fields, now including the ="item"=
+     dropdown populated with the matching choices.
+
+*** Multipage Dynamic Workflows
+Forms can span multiple pages by providing a list of page
+specifications. Pages following the first can be pure functions of all
+previous inputs:
+
+#+begin_src wl
+FormFunction[
+  {
+    {{"numRooms", "Number of rooms"} -> "Integer"},
+    Function[
+      Table[
+        {"room_" <> ToString[i], "Occupants in Room " <> ToString[i]} -> "Integer",
+        {i, #numRooms}
+      ]
+    ]
+  },
+  Identity
+]
+#+end_src
+
+--------------
+
+** 5. Architectural Comparison: Web Forms vs. DynamicModule vs. Custom APIs
+| Capability             | =FormFunction= / =FormPage=                                   | =CloudDeploy[DynamicModule[...]]= / =Manipulate=                    | =APIFunction= + Custom Web App                               |
+|------------------------+-----------------------------------------------------------+-----------------------------------------------------------------+------------------------------------------------------------|
+| *Primary Use Case*       | Data collection, parameterized jobs, multi-step workflows | Real-time interactive graphics, calculators, simulations        | Bespoke web apps, single-page apps (SPAs)                  |
+| *Interactivity Model*    | Server-side cascading via =TemplateSlot= & =AutoSubmitting=   | Live client-side reactive DOM via Cloud CDF / WebSockets        | Client-side JavaScript (=fetch=/AJAX) calling backend APIs |
+| *Data Validation*        | Built-in via Wolfram =Interpreter=                          | Manual (via Wolfram Language logic in dynamic expressions)      | Managed at API boundary via =APIFunction= arguments          |
+| *Field-to-Field Updates* | Dependent fields reloaded via HTTP cycle                  | Immediate client-side reactive variable binding                 | Handled via client framework (React, Vue, or vanilla JS)   |
+| *Layout Control*         | Programmatic via =FormLayoutFunction= & =AppearanceRules=     | Wolfram layout primitives (=Column=, =Row=, =Grid=) inside the module | Unlimited (full HTML, CSS, custom UI components)           |
+
+--------------
+
+** 6. Practical Recommendations
+1. *Use =FormFunction= with =TemplateSlot= / =TemplateExpression=* when:
+   - You need structured input with built-in validation.
+   - Field dependencies can update via cascading steps (e.g., selecting
+     Country updates State/Province).
+   - You want a clean web form generated entirely from symbolic Wolfram
+     code without writing HTML or JavaScript.
+2. *Use =CloudDeploy[Manipulate[...]]= or
+   =CloudDeploy[DynamicModule[...]]=* when:
+   - You require instant, continuous visual feedback (e.g., moving a
+     slider immediately updates a plot or computed value without form
+     submission).
+3. *Use =APIFunction= + Custom HTML/JS* when:
+   - You are integrating Wolfram computation into an existing frontend
+     or require complex, arbitrary client-side state transitions.
