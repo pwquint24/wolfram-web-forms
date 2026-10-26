@@ -1,0 +1,758 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     30722,        749]
+NotebookOptionsPosition[     27347,        704]
+NotebookOutlinePosition[     27664,        718]
+CellTagsIndexPosition[     27621,        715]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Advanced Formatting and Layout in Web Forms", "Title",ExpressionUUID->"83814ed9-711b-416c-8f81-4e3a72a68334"],
+
+Cell["\<\
+This notebook extends the basic FormLayoutFunction examples to produce \
+richer, sectioned, and more visually structured web forms. The layout \
+machinery is the same Wolfram language primitives used in notebooks \
+\[LongDash] Column, Row, Grid, Panel, and Delimiter \[LongDash] so complex, \
+multi-panel layouts can be built entirely symbolically. \
+\>", "Text",ExpressionUUID->"7fa270ca-f5b3-4cc0-b859-335afd6e71f4"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"9d52ee23-c594-49fd-9b7e-925fb670d446"],
+
+Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"55fd5e4f-00a0-4aab-9e69-839c245792ba"],
+
+Cell[TextData[{
+ StyleBox["Sectioned layouts",
+  FontWeight->Bold],
+ ": A ",
+ "FormLayoutFunction",
+ " can group fields into logical sections separated by ",
+ "Delimiter",
+ ", each headed by a custom header built from ",
+ "Style",
+ " and small ",
+ "Graphics",
+ "."
+}], "Item",ExpressionUUID->"f2dccb50-513d-474e-9eb9-817a79c7a756"],
+
+Cell[TextData[{
+ StyleBox["Grid formatting options",
+  FontWeight->Bold],
+ ": ",
+ "Alignment",
+ ", ",
+ "Spacings",
+ ", ",
+ "Dividers",
+ ", ",
+ "Background",
+ ", ",
+ "Frame",
+ ", and ",
+ "ItemSize",
+ " give fine-grained control over multi-column field layouts."
+}], "Item",ExpressionUUID->"11030123-68a7-4539-89ba-8c027622d219"],
+
+Cell[TextData[{
+ "Non-textual ",
+ "AppearanceRules",
+ ": ",
+ Cell[BoxData["\"\<Title\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "b710022f-35f1-4c8e-bc03-139f7b5dfbb3"],
+ " and ",
+ Cell[BoxData["\"\<Description\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "7878cf7a-b63c-4856-bd46-37e4db00be71"],
+ " accept styled or graphical expressions, not just plain strings."
+}], "Item",ExpressionUUID->"51dc2766-4ff0-4312-82a2-ad698c853e76"],
+
+Cell[TextData[{
+ Cell[BoxData["\"\<ItemLayout\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,
+  FontWeight->Bold,ExpressionUUID->"af956564-a150-4084-9111-837108e1e908"],
+ ": The ",
+ "AppearanceRules",
+ " key ",
+ Cell[BoxData["\"\<ItemLayout\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "2dedbd15-c1db-4f02-9fc6-4f6b4ff10cb8"],
+ " controls how each field's label is positioned relative to its control: ",
+ Cell[BoxData["\"\<Vertical\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "8b220a8d-84e1-4ec8-acf1-7235d1600ba7"],
+ ", ",
+ Cell[BoxData["\"\<Horizontal\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "cf9d6f30-d56a-4872-86ff-986d7243fcd4"],
+ ", or ",
+ Cell[BoxData["\"\<Inline\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "4980f31b-855d-46aa-a243-81fa2a696983"],
+ "."
+}], "Item",ExpressionUUID->"3ea68288-2799-4ce8-97c7-eb2b28856a46"],
+
+Cell[TextData[{
+ StyleBox["Theming",
+  FontWeight->Bold],
+ ": ",
+ "PageTheme",
+ " sets the overall look, and style keys such as ",
+ Cell[BoxData["\"\<FormTitleStyle\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "86523f81-f0ca-4548-8ac3-9aff397052ab"],
+ " and ",
+ Cell[BoxData["\"\<FormDescriptionStyle\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "10e71f64-42da-432f-8883-a20fe40bbd2c"],
+ " can further customize headings."
+}], "Item",ExpressionUUID->"a4ac31c1-1ea2-463d-b802-0c68ed0ca4f6"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"aa1df202-ea62-4d64-8f15-191ffa22da80"],
+
+Cell["2. Define a Reusable Section Header", "Section",ExpressionUUID->"9263869a-a7bc-4f4d-ac9c-746a006e3184"],
+
+Cell["\<\
+A small helper builds a colored section header out of a thin orange bar and \
+bold text: \
+\>", "CodeText",ExpressionUUID->"40a02f7b-2fd2-4ef4-9031-dba52816a3ff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"sectionHeader", "[", "text_", "]"}], ":=", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", "  ", 
+     RowBox[{
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Orange", ",", 
+          RowBox[{"Rectangle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "1"}], "}"}]}], "]"}]}], "}"}], ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"5", ",", "16"}], "}"}]}]}], "]"}], ",", 
+      "\[IndentingNewLine]", "  ", 
+      RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", "  ", 
+      RowBox[{"Style", "[", 
+       RowBox[{"text", ",", "Bold", ",", "14", ",", 
+        RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}]}], ";"}]], "Input",ExpressionUUID->\
+"a011b821-5ab2-4aa5-a969-6b6b273409c8"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"cb6778ec-097d-4263-9ce1-4d2441869739"],
+
+Cell["3. Define the Multi-Section Estimator", "Section",ExpressionUUID->"08fc3922-5183-4fc3-a594-336509772536"],
+
+Cell[TextData[{
+ "This form organizes six fields into three sections \[LongDash] ",
+ StyleBox["Project Details",
+  FontWeight->Bold],
+ ", ",
+ StyleBox["Budget",
+  FontWeight->Bold],
+ ", and ",
+ StyleBox["Timeline",
+  FontWeight->Bold],
+ " \[LongDash] each rendered by a dedicated ",
+ "Grid",
+ " with right-aligned labels, separated by ",
+ "Delimiter",
+ ". "
+}], "Text",ExpressionUUID->"3304a669-c918-4dcf-b068-358bb64c649a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"estimator", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{"\"\<projectName\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", "\"\<String\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Project Name\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Hint\>\"", "->", "\"\<e.g. Q3 Launch\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Required\>\"", "->", "True"}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "\"\<Q3 Launch\>\""}]}], 
+         "\[IndentingNewLine]", "    ", "|>"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<category\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<Web App\>\"", ",", "\"\<Data Analysis\>\"", 
+             ",", "\"\<Automation\>\""}], "}"}]}], ",", "\[IndentingNewLine]",
+           "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Category\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Control\>\"", "->", "PopupMenu"}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "\"\<Web App\>\""}]}], 
+         "\[IndentingNewLine]", "    ", "|>"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<budget\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", 
+           RowBox[{"Restricted", "[", 
+            RowBox[{"\"\<Integer\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{"1000", ",", "100000"}], "}"}]}], "]"}]}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Budget\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "25000"}]}], "\[IndentingNewLine]", 
+         "    ", "|>"}]}], ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"\"\<currency\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<USD ($)\>\"", "->", "\"\<$\>\""}], ",", 
+             RowBox[{"\"\<EUR (Euro)\>\"", "->", "\"\<\[Euro]\>\""}], ",", 
+             RowBox[{"\"\<GBP (Pound)\>\"", "->", "\"\<\[Sterling]\>\""}]}], 
+            "}"}]}], ",", "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Currency\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Control\>\"", "->", "PopupMenu"}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "\"\<USD ($)\>\""}]}], 
+         "\[IndentingNewLine]", "    ", "|>"}]}], ",", "\[IndentingNewLine]", 
+       "    ", 
+       RowBox[{"\"\<startDate\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", "\"\<Date\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Start Date\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "Today"}]}], "\[IndentingNewLine]", 
+         "    ", "|>"}]}], ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"\"\<durationWeeks\>\"", "->", 
+        RowBox[{"<|", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"\"\<Interpreter\>\"", "->", 
+           RowBox[{"Restricted", "[", 
+            RowBox[{"\"\<Integer\>\"", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "52"}], "}"}]}], "]"}]}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Label\>\"", "->", "\"\<Duration (weeks)\>\""}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"\"\<Input\>\"", "->", "8"}]}], "\[IndentingNewLine]", 
+         "    ", "|>"}]}]}], "\[IndentingNewLine]", "  ", "}"}], ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "weeklyCost", "}"}], ",", "\[IndentingNewLine]", 
+         "      ", 
+         RowBox[{
+          RowBox[{"weeklyCost", "=", 
+           RowBox[{"Round", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"params", "[", "\"\<budget\>\"", "]"}], "/", 
+              RowBox[{"params", "[", "\"\<durationWeeks\>\"", "]"}]}], ",", 
+             "0.01"}], "]"}]}], ";", "\[IndentingNewLine]", "      ", 
+          RowBox[{"Panel", "[", "\[IndentingNewLine]", "        ", 
+           RowBox[{
+            RowBox[{"Column", "[", 
+             RowBox[{"{", "\[IndentingNewLine]", "          ", 
+              RowBox[{
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{"\"\<Cost Estimate: \>\"", " ", "<>", " ", 
+                  RowBox[{"params", "[", "\"\<projectName\>\"", "]"}]}], ",", 
+                 "Bold", ",", "18", ",", 
+                 RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}], ",", 
+               "\[IndentingNewLine]", "          ", 
+               RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", 
+               "          ", 
+               RowBox[{"Grid", "[", 
+                RowBox[{
+                 RowBox[{"{", "\[IndentingNewLine]", "            ", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Category:\>\"", ",", 
+                    RowBox[{"params", "[", "\"\<category\>\"", "]"}]}], "}"}],
+                    ",", "\[IndentingNewLine]", "            ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Total Budget:\>\"", ",", 
+                    RowBox[{
+                    RowBox[{"params", "[", "\"\<currency\>\"", "]"}], " ", "<>",
+                     " ", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{
+                    RowBox[{"params", "[", "\"\<budget\>\"", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"10", ",", "2"}], "}"}]}], "]"}], "]"}]}]}], 
+                    "}"}], ",", "\[IndentingNewLine]", "            ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Duration:\>\"", ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"params", "[", "\"\<durationWeeks\>\"", "]"}], 
+                    "]"}], " ", "<>", " ", "\"\< weeks\>\""}]}], "}"}], ",", 
+                   "\[IndentingNewLine]", "            ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Weekly Run Rate:\>\"", ",", 
+                    RowBox[{"Style", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"params", "[", "\"\<currency\>\"", "]"}], " ", "<>",
+                     " ", 
+                    RowBox[{"ToString", "[", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"weeklyCost", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"10", ",", "2"}], "}"}]}], "]"}], "]"}]}], ",", 
+                    "Bold", ",", 
+                    RowBox[{"Darker", "[", "Green", "]"}]}], "]"}]}], "}"}], ",",
+                    "\[IndentingNewLine]", "            ", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Start Date:\>\"", ",", 
+                    RowBox[{"DateString", "[", 
+                    RowBox[{
+                    RowBox[{"params", "[", "\"\<startDate\>\"", "]"}], ",", 
+                    RowBox[{"{", 
+                    
+                    RowBox[{"\"\<Month\>\"", ",", "\"\</\>\"", 
+                    ",", "\"\<Day\>\"", ",", "\"\</\>\"", 
+                    ",", "\"\<Year\>\""}], "}"}]}], "]"}]}], "}"}]}], 
+                  "\[IndentingNewLine]", "          ", "}"}], ",", 
+                 RowBox[{"Alignment", "->", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"Right", ",", "Left"}], "}"}], ",", "Center"}], 
+                   "}"}]}], ",", 
+                 RowBox[{"Spacings", "->", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}]}], 
+              "\[IndentingNewLine]", "        ", "}"}], "]"}], ",", 
+            "\[IndentingNewLine]", "        ", 
+            RowBox[{"ImageSize", "->", "400"}]}], "\[IndentingNewLine]", 
+           "      ", "]"}]}]}], "\[IndentingNewLine]", "    ", "]"}]}], 
+      "\[IndentingNewLine]", "  ", "]"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", "->", "\"\<Project Cost Estimator\>\""}], ",",
+         "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", "->", 
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<A multi-section form with advanced formatting and \
+custom layout.\>\"", ",", "Italic", ",", "Gray"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Calculate Estimate\>\""}]}],
+        "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     "  ", 
+     RowBox[{"FormLayoutFunction", "->", 
+      RowBox[{"Function", "[", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Column", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"sectionHeader", "[", "\"\<PROJECT DETAILS\>\"", "]"}], ",",
+           "\[IndentingNewLine]", "      ", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", "        ", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<projectName\>\"", ",", "\"\<Label\>\""}], "]"}],
+                 ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<projectName\>\"", ",", "\"\<Control\>\""}], 
+                 "]"}]}], "}"}], ",", "\[IndentingNewLine]", "        ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<category\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<category\>\"", ",", "\"\<Control\>\""}], 
+                 "]"}]}], "}"}]}], "\[IndentingNewLine]", "      ", "}"}], ",", 
+            RowBox[{"Alignment", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"Right", ",", "Left"}], "}"}], ",", "Center"}], 
+              "}"}]}], ",", 
+            RowBox[{"Spacings", "->", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}], ",", 
+          "\[IndentingNewLine]", "      ", "Delimiter", ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"sectionHeader", "[", "\"\<BUDGET\>\"", "]"}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", "        ", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<budget\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<budget\>\"", ",", "\"\<Control\>\""}], "]"}]}], 
+               "}"}], ",", "\[IndentingNewLine]", "        ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<currency\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<currency\>\"", ",", "\"\<Control\>\""}], 
+                 "]"}]}], "}"}]}], "\[IndentingNewLine]", "      ", "}"}], ",", 
+            RowBox[{"Alignment", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"Right", ",", "Left"}], "}"}], ",", "Center"}], 
+              "}"}]}], ",", 
+            RowBox[{"Spacings", "->", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}], ",", 
+          "\[IndentingNewLine]", "      ", "Delimiter", ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"sectionHeader", "[", "\"\<TIMELINE\>\"", "]"}], ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", "        ", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<startDate\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<startDate\>\"", ",", "\"\<Control\>\""}], 
+                 "]"}]}], "}"}], ",", "\[IndentingNewLine]", "        ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<durationWeeks\>\"", ",", "\"\<Label\>\""}], 
+                 "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<durationWeeks\>\"", ",", "\"\<Control\>\""}], 
+                 "]"}]}], "}"}]}], "\[IndentingNewLine]", "      ", "}"}], ",", 
+            RowBox[{"Alignment", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"Right", ",", "Left"}], "}"}], ",", "Center"}], 
+              "}"}]}], ",", 
+            RowBox[{"Spacings", "->", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}]}], 
+         "\[IndentingNewLine]", "    ", "}"}], "]"}], "\[IndentingNewLine]", 
+       "  ", "]"}]}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"PageTheme", "->", "\"\<Light\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",ExpressionUUID->"1c978ef6-a71e-4090-8e27-\
+7075c522251e"],
+
+Cell["Notes on the Layout", "Subsection",ExpressionUUID->"2990927d-2c0f-41c6-a906-0b173f17e0db"],
+
+Cell[TextData[{
+ "Each section is a ",
+ "Grid",
+ " with ",
+ Cell[BoxData[
+  RowBox[{"Alignment", "->", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Right", ",", "Left"}], "}"}], ",", "Center"}], "}"}]}]], 
+  "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "56fed36f-2d34-4837-8e97-5e8600c6e6d6"],
+ " so labels sit flush right and controls flush left."
+}], "Item",ExpressionUUID->"663dd0a9-9537-4dbd-8b7f-bfa526c71051"],
+
+Cell["Delimiter inserts a horizontal rule between sections.", "Item",ExpressionUUID->"9b978f29-2a10-4c47-b7a2-27eceb5a2dae"],
+
+Cell[TextData[{
+ Cell[BoxData[Cell["#[\"key\", \"Label\"]",
+   Background->None,ExpressionUUID->"f13cc3b7-574b-4787-b16a-6a50c6e51f93"]], 
+  "InlineCode",ExpressionUUID->"77e0395b-914a-4daa-8137-9e13a8153dd2"],
+ " and ",
+ Cell[BoxData[Cell["#[\"key\", \"Control\"]",
+   Background->None,ExpressionUUID->"fe36cb8f-431c-41af-bb8b-167aa5e03bfe"]], 
+  "InlineCode",ExpressionUUID->"a2d75919-9339-4c5f-98bd-34cf1fe0420a"],
+ " extract the label and bare input element for each field."
+}], "Item",ExpressionUUID->"0919a2cc-1911-4cbe-aa5c-b9417bb82578"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["\"\<Currency\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "dd6d3afc-51e3-4b84-a648-26a8175a7e34"],
+ " interpreter maps human-readable popup labels (",
+ Cell[BoxData["\"\<USD ($)\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1bf2ef97-eb4a-43b8-8bbb-5ef3e2b6dfb3"],
+ ") to symbols (",
+ Cell[BoxData["\"\<$\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "256cfd13-2665-431f-94d1-3a67c8c5b7cd"],
+ ") that are used in the result calculation."
+}], "Item",ExpressionUUID->"3ff9cc74-dfcd-47e4-b15f-49e9b955e408"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"4557f97e-b44c-46cb-a30a-51508bdd47cb"],
+
+Cell["4. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"525cc982-288b-4ecc-a82e-3f6d110d6d82"],
+
+Cell["Deploy the estimator: ", "CodeText",ExpressionUUID->"78d57f8e-f8d0-4ee6-ba0e-3f31fd546f8c"],
+
+Cell[BoxData[
+ RowBox[{"co", "=", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{"estimator", ",", 
+    RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}]], "Input",Expre\
+ssionUUID->"776ba0a9-85c1-484b-a276-414e79366453"],
+
+Cell["Retrieve the URL: ", "CodeText",ExpressionUUID->"12fd6142-b7c0-4e7d-b250-d47c6a5ad065"],
+
+Cell[BoxData[
+ RowBox[{"co", "[", "\"\<URL\>\"", "]"}]], "Input",ExpressionUUID->"82377668-2397-4519-a147-804d262377d8"],
+
+Cell["Try It in the Browser", "Subsection",ExpressionUUID->"6ff1956d-383d-4b07-b8fa-9d2ba52b0f54"],
+
+Cell["\<\
+1. Notice the three labeled sections and the horizontal rules between them.\
+\>", "Text",ExpressionUUID->"30a15d9d-2e22-4cec-8e4e-8650b1960224"],
+
+Cell["\<\
+2. Change the budget, currency, and duration, then submit to see the \
+formatted cost breakdown. \
+\>", "Text",ExpressionUUID->"3bfa7d12-22f5-46f0-89f7-d1dc341beeec"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"c47949cd-dbc8-46ac-8230-e4a5a44a5f8b"],
+
+Cell["5. Delete the Cloud Object", "Section",ExpressionUUID->"e9358445-6b48-4285-a1ff-a53b25606f83"],
+
+Cell[BoxData[
+ RowBox[{"DeleteObject", "[", "co", "]"}]], "Input",ExpressionUUID->"b9a1da7f-36bb-42ca-b6e5-400e5b0e5ad4"]
+},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a83bd6d1-c378-4ba4-8c49-4f0e587986a8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 115, 0, 70, "Title",ExpressionUUID->"83814ed9-711b-416c-8f81-4e3a72a68334"],
+Cell[672, 22, 428, 6, 70, "Text",ExpressionUUID->"7fa270ca-f5b3-4cc0-b859-335afd6e71f4"],
+Cell[1103, 30, 596, 20, 70, "Text",ExpressionUUID->"9d52ee23-c594-49fd-9b7e-925fb670d446"],
+Cell[1702, 52, 98, 0, 70, "Section",ExpressionUUID->"55fd5e4f-00a0-4aab-9e69-839c245792ba"],
+Cell[1803, 54, 331, 12, 70, "Item",ExpressionUUID->"f2dccb50-513d-474e-9eb9-817a79c7a756"],
+Cell[2137, 68, 327, 16, 70, "Item",ExpressionUUID->"11030123-68a7-4539-89ba-8c027622d219"],
+Cell[2467, 86, 652, 18, 70, "Item",ExpressionUUID->"51dc2766-4ff0-4312-82a2-ad698c853e76"],
+Cell[3122, 106, 1363, 38, 70, "Item",ExpressionUUID->"3ea68288-2799-4ce8-97c7-eb2b28856a46"],
+Cell[4488, 146, 709, 20, 70, "Item",ExpressionUUID->"a4ac31c1-1ea2-463d-b802-0c68ed0ca4f6"],
+Cell[5200, 168, 596, 20, 70, "Text",ExpressionUUID->"aa1df202-ea62-4d64-8f15-191ffa22da80"],
+Cell[5799, 190, 109, 0, 70, "Section",ExpressionUUID->"9263869a-a7bc-4f4d-ac9c-746a006e3184"],
+Cell[5911, 192, 172, 3, 70, "CodeText",ExpressionUUID->"40a02f7b-2fd2-4ef4-9031-dba52816a3ff"],
+Cell[6086, 197, 996, 26, 70, "Input",ExpressionUUID->"a011b821-5ab2-4aa5-a969-6b6b273409c8"],
+Cell[7085, 225, 596, 20, 70, "Text",ExpressionUUID->"cb6778ec-097d-4263-9ce1-4d2441869739"],
+Cell[7684, 247, 111, 0, 70, "Section",ExpressionUUID->"08fc3922-5183-4fc3-a594-336509772536"],
+Cell[7798, 249, 424, 15, 70, "Text",ExpressionUUID->"3304a669-c918-4dcf-b068-358bb64c649a"],
+Cell[8225, 266, 14411, 301, 70, "Input",ExpressionUUID->"1c978ef6-a71e-4090-8e27-7075c522251e"],
+Cell[22639, 569, 96, 0, 70, "Subsection",ExpressionUUID->"2990927d-2c0f-41c6-a906-0b173f17e0db"],
+Cell[22738, 571, 538, 17, 70, "Item",ExpressionUUID->"663dd0a9-9537-4dbd-8b7f-bfa526c71051"],
+Cell[23279, 590, 124, 0, 70, "Item",ExpressionUUID->"9b978f29-2a10-4c47-b7a2-27eceb5a2dae"],
+Cell[23406, 592, 545, 9, 70, "Item",ExpressionUUID->"0919a2cc-1911-4cbe-aa5c-b9417bb82578"],
+Cell[23954, 603, 872, 23, 70, "Item",ExpressionUUID->"3ff9cc74-dfcd-47e4-b15f-49e9b955e408"],
+Cell[24829, 628, 596, 20, 70, "Text",ExpressionUUID->"4557f97e-b44c-46cb-a30a-51508bdd47cb"],
+Cell[25428, 650, 104, 0, 70, "Section",ExpressionUUID->"525cc982-288b-4ecc-a82e-3f6d110d6d82"],
+Cell[25535, 652, 97, 0, 70, "CodeText",ExpressionUUID->"78d57f8e-f8d0-4ee6-ba0e-3f31fd546f8c"],
+Cell[25635, 654, 226, 5, 70, "Input",ExpressionUUID->"776ba0a9-85c1-484b-a276-414e79366453"],
+Cell[25864, 661, 93, 0, 70, "CodeText",ExpressionUUID->"12fd6142-b7c0-4e7d-b250-d47c6a5ad065"],
+Cell[25960, 663, 120, 1, 70, "Input",ExpressionUUID->"82377668-2397-4519-a147-804d262377d8"],
+Cell[26083, 666, 98, 0, 70, "Subsection",ExpressionUUID->"6ff1956d-383d-4b07-b8fa-9d2ba52b0f54"],
+Cell[26184, 668, 154, 2, 70, "Text",ExpressionUUID->"30a15d9d-2e22-4cec-8e4e-8650b1960224"],
+Cell[26341, 672, 176, 3, 70, "Text",ExpressionUUID->"3bfa7d12-22f5-46f0-89f7-d1dc341beeec"],
+Cell[26520, 677, 596, 20, 70, "Text",ExpressionUUID->"c47949cd-dbc8-46ac-8230-e4a5a44a5f8b"],
+Cell[27119, 699, 100, 0, 70, "Section",ExpressionUUID->"e9358445-6b48-4285-a1ff-a53b25606f83"],
+Cell[27222, 701, 121, 1, 70, "Input",ExpressionUUID->"b9a1da7f-36bb-42ca-b6e5-400e5b0e5ad4"]
+}
+]
+*)
+
+(* End of internal cache information *)

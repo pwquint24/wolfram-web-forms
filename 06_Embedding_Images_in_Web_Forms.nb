@@ -1,0 +1,864 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     33490,        855]
+NotebookOptionsPosition[     29546,        788]
+NotebookOutlinePosition[     29936,        804]
+CellTagsIndexPosition[     29893,        801]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Embedding Images in Web Forms", "Title",ExpressionUUID->"b89e2cf3-3cd1-4452-a19a-a6dc66c8b279"],
+
+Cell[TextData[{
+ "This notebook builds on the earlier examples to show how to embed images \
+into Wolfram Language web forms. Images can appear in three distinct places: \
+(1) the form chrome (title, description, and submit button), (2) inside a \
+custom ",
+ "FormLayoutFunction",
+ " layout, and (3) as user-uploaded content via the ",
+ Cell[BoxData["\"\<Image\>\""], "InlineWL",ExpressionUUID->
+  "a975fc50-8066-41b2-8526-02ceaf3e0564"],
+ " interpreter that is then composited into an image result. "
+}], "Text",ExpressionUUID->"7188f038-a38b-4023-8c69-da4f92c20e15"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"4110b1ec-7b81-4322-ab8d-9ecc3b0df646"],
+
+Cell[CellGroupData[{
+
+Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"dd3c39ca-5ed4-4924-b0c8-0fc6568f09c9"],
+
+Cell[TextData[{
+ "Images as non-textual ",
+ "AppearanceRules",
+ " values",
+ ": The ",
+ Cell[BoxData["\"\<Title\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "5c7e253c-18d1-4e18-a22e-f2aa98a126c8"],
+ ", ",
+ Cell[BoxData["\"\<Description\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "d35441dd-0248-4136-a6de-238d86f6dc6d"],
+ ", and ",
+ Cell[BoxData["\"\<SubmitLabel\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "1d834816-3ab2-46c7-b7ea-e40e90cd9149"],
+ " appearance rules do not have to be plain strings. They accept any \
+renderable Wolfram expression such as ",
+ "Image",
+ ", ",
+ "Graphics",
+ ", or ",
+ "Style",
+ ". The form engine rasterizes these values and embeds them directly in the \
+generated HTML, which makes them ideal for logos, banners, and branded \
+forms."
+}], "Item",ExpressionUUID->"7945ea9c-d184-4bbf-a629-44ba9a3e1fe4"],
+
+Cell["\<\
+Images and graphics inside FormLayoutFunction: Because a FormLayoutFunction \
+simply returns a Wolfram layout expression, you can mix arbitrary graphics \
+and images with form controls using Row, Column, Grid, and Delimiter.\
+\>", "Item",ExpressionUUID->"793fd3a7-eeee-49c5-9e13-a70f43b5f542"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["\"\<Image\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "fa587938-0495-44f8-a599-02b4a9d5314f"],
+ " interpreter",
+ ": A field declared with interpreter ",
+ Cell[BoxData["\"\<Image\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "d28e8b6a-d84b-4240-af82-cc546ccb7da7"],
+ " renders a file-upload control. On submission, the uploaded file is \
+delivered to the action function as a native ",
+ "Image",
+ " expression that can be processed, transformed, or composited."
+}], "Item",ExpressionUUID->"37f18069-738d-427d-b6bc-501c1056a97b"],
+
+Cell[TextData[{
+ StyleBox["Image output",
+  FontWeight->Bold],
+ ": The third argument of ",
+ "FormFunction",
+ " or ",
+ "FormPage",
+ " can be an image format such as ",
+ Cell[BoxData["\"\<PNG\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "ccbb5f37-5674-4808-b71d-9585851baf1f"],
+ ", ",
+ Cell[BoxData["\"\<JPEG\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "9ae2ab53-526a-4c63-9c67-5a952fec155e"],
+ ", or ",
+ Cell[BoxData["\"\<GIF\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "60c50e92-99d5-4946-8490-90b708946775"],
+ ", so the result is returned as an image."
+}], "Item",ExpressionUUID->"01f6933c-79eb-4216-a930-ead1c8e90589"],
+
+Cell[TextData[{
+ StyleBox["Cloud deployment and cleanup",
+  FontWeight->Bold],
+ ": Using ",
+ "CloudDeploy",
+ " and ",
+ "DeleteObject",
+ "."
+}], "Item",ExpressionUUID->"6302293e-1689-4972-8568-eb06d6251ae9"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"771bcb2c-2e40-489f-9926-c2b36a29ca12"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2. Example 1 \[LongDash] Branding with a Banner Title and an Inline Logo\
+\>", "Section",ExpressionUUID->"d6e28409-b49b-4cc3-be99-54c27ec3c8ee"],
+
+Cell["\<\
+First, build two image assets: a rasterized banner for the form title and a \
+small triangular logo for the inline layout. \
+\>", "Text",ExpressionUUID->"b32d986a-15a0-4abe-9276-76a4fb076be1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "A", " ", "rasterized", " ", "banner", " ", "image", " ", "used", " ", 
+    "as", " ", "the", " ", 
+    RowBox[{"form", "'"}], "s", " ", "title"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"banner", "=", 
+     RowBox[{"Rasterize", "[", "\[IndentingNewLine]", "  ", 
+      RowBox[{
+       RowBox[{"Graphics", "[", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", "    ", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Darker", "[", "Blue", "]"}], ",", 
+             RowBox[{"Rectangle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "300"}], ",", 
+                 RowBox[{"-", "40"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"300", ",", "40"}], "}"}]}], "]"}]}], "}"}], ",", 
+           "\[IndentingNewLine]", "    ", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<ACME CONFERENCE 2024\>\"", ",", "White", ",", 
+               "Bold", ",", "26", ",", 
+               RowBox[{"FontFamily", "->", "\"\<Arial\>\""}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", "    ", 
+           RowBox[{"{", 
+            RowBox[{"Orange", ",", 
+             RowBox[{"Rectangle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "300"}], ",", "40"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"300", ",", "46"}], "}"}]}], "]"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "  ", "}"}], ",", 
+         RowBox[{"ImageSize", "->", 
+          RowBox[{"{", 
+           RowBox[{"600", ",", "92"}], "}"}]}], ",", 
+         RowBox[{"PlotRangePadding", "->", "None"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "  ", 
+       RowBox[{"ImageSize", "->", 
+        RowBox[{"{", 
+         RowBox[{"600", ",", "92"}], "}"}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "A", " ", "small", " ", "inline", " ", "logo", " ", "for", " ", "the", " ",
+      "layout"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"logo", "=", 
+     RowBox[{"Rasterize", "[", "\[IndentingNewLine]", "  ", 
+      RowBox[{
+       RowBox[{"Graphics", "[", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", "    ", 
+          RowBox[{
+           RowBox[{"EdgeForm", "[", "White", "]"}], ",", 
+           RowBox[{"FaceForm", "[", "Orange", "]"}], ",", 
+           "\[IndentingNewLine]", "    ", 
+           RowBox[{"RegularPolygon", "[", "3", "]"}], ",", 
+           "\[IndentingNewLine]", "    ", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<A\>\"", ",", "White", ",", "Bold", ",", "22"}], 
+              "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", 
+               RowBox[{"-", "0.15"}]}], "}"}]}], "]"}]}], 
+          "\[IndentingNewLine]", "  ", "}"}], ",", 
+         RowBox[{"ImageSize", "->", "90"}], ",", 
+         RowBox[{"Background", "->", 
+          RowBox[{"Darker", "[", "Blue", "]"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", "  ", 
+       RowBox[{"ImageSize", "->", "90"}]}], "\[IndentingNewLine]", "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"b89f4ec2-5f68-4519-940c-5b1b80ee498d"],
+
+Cell[TextData[{
+ "Now define a registration form. The banner is passed to ",
+ Cell[BoxData["\"\<Title\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "190399c8-0313-4e3c-bb29-844da4cc96ef"],
+ " in ",
+ "AppearanceRules",
+ ", and the logo is placed in the ",
+ "FormLayoutFunction",
+ " beside a heading: "
+}], "CodeText",ExpressionUUID->"0ea22f0e-3cec-4811-8205-2b3275ad0962"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"form", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<name\>\"", ",", "\"\<Full Name:\>\""}], "}"}], 
+        "->", "\"\<String\>\""}], ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<role\>\"", ",", "\"\<Role:\>\""}], "}"}], "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Attendee\>\"", ",", "\"\<Speaker\>\"", 
+          ",", "\"\<Sponsor\>\"", ",", "\"\<Staff\>\""}], "}"}]}], ",", 
+       "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<color\>\"", ",", "\"\<Badge Color:\>\""}], "}"}], "->", 
+        
+        RowBox[{"\"\<Color\>\"", "->", 
+         RowBox[{"RGBColor", "[", 
+          RowBox[{"0.2", ",", "0.4", ",", "0.8"}], "]"}]}]}]}], 
+      "\[IndentingNewLine]", "  ", "}"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Panel", "[", "\[IndentingNewLine]", "      ", 
+        RowBox[{
+         RowBox[{"Column", "[", 
+          RowBox[{
+           RowBox[{"{", "\[IndentingNewLine]", "        ", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Registration Confirmed\>\"", ",", "Bold", ",", 
+               "18", ",", 
+               RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}], ",", 
+             "\[IndentingNewLine]", "        ", 
+             RowBox[{"Spacer", "[", "5", "]"}], ",", "\[IndentingNewLine]", 
+             "        ", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Name: \>\"", ",", "Bold"}], "]"}], ",", 
+                RowBox[{"params", "[", "\"\<name\>\"", "]"}]}], "}"}], "]"}], 
+             ",", "\[IndentingNewLine]", "        ", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Role: \>\"", ",", "Bold"}], "]"}], ",", 
+                RowBox[{"params", "[", "\"\<role\>\"", "]"}]}], "}"}], "]"}], 
+             ",", "\[IndentingNewLine]", "        ", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<Badge Color: \>\"", ",", "Bold"}], "]"}], ",", 
+                "\[IndentingNewLine]", "          ", 
+                RowBox[{"Graphics", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"params", "[", "\"\<color\>\"", "]"}], ",", 
+                    RowBox[{"Rectangle", "[", "]"}]}], "}"}], ",", 
+                  RowBox[{"ImageSize", "->", 
+                   RowBox[{"{", 
+                    RowBox[{"18", ",", "18"}], "}"}]}]}], "]"}]}], "}"}], 
+              "]"}]}], "\[IndentingNewLine]", "      ", "}"}], ",", 
+           RowBox[{"Alignment", "->", "Left"}], ",", 
+           RowBox[{"Spacings", "->", "1"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", "      ", 
+         RowBox[{"ImageSize", "->", "360"}]}], "\[IndentingNewLine]", "    ", 
+        "]"}]}], "\[IndentingNewLine]", "  ", "]"}], ",", 
+     "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", "->", "banner"}], ",", "\[IndentingNewLine]",
+         "    ", 
+        RowBox[{"\"\<Description\>\"", "->", 
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Register for the conference by filling out the form \
+below.\>\"", ",", "Italic", ",", "Gray"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Register\>\""}]}], 
+       "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     "  ", 
+     RowBox[{"FormLayoutFunction", "->", 
+      RowBox[{"Function", "[", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Column", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", "      ", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{"logo", ",", 
+             RowBox[{"Spacer", "[", "15", "]"}], ",", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Attendee Registration\>\"", ",", "Bold", ",", "18",
+                ",", 
+               RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}]}], "}"}], "]"}], 
+          ",", "\[IndentingNewLine]", "      ", "Delimiter", ",", 
+          "\[IndentingNewLine]", "      ", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", "        ", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<name\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<name\>\"", ",", "\"\<Control\>\""}], "]"}]}], 
+               "}"}], ",", "\[IndentingNewLine]", "        ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<role\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<role\>\"", ",", "\"\<Control\>\""}], "]"}]}], 
+               "}"}], ",", "\[IndentingNewLine]", "        ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<color\>\"", ",", "\"\<Label\>\""}], "]"}], ",", 
+                
+                RowBox[{"#", "[", 
+                 RowBox[{"\"\<color\>\"", ",", "\"\<Control\>\""}], "]"}]}], 
+               "}"}]}], "\[IndentingNewLine]", "      ", "}"}], ",", 
+            RowBox[{"Alignment", "->", "Left"}], ",", 
+            RowBox[{"Spacings", "->", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "1"}], "}"}]}]}], "]"}]}], 
+         "\[IndentingNewLine]", "    ", "}"}], "]"}], "\[IndentingNewLine]", 
+       "  ", "]"}]}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"PageTheme", "->", "\"\<White\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{4.002017107317175*^9, 4.002017109935811*^9}, {
+  4.0020174658235073`*^9, 4.002017478481297*^9}, {4.002017673827551*^9, 
+  4.002017704054302*^9}, {4.002017776400262*^9, 4.0020177853989697`*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"3592a0ec-a631-40dc-9796-09da535fe42b"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"7952fa3c-8cce-43f6-b233-218635439735"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Example 2 \[LongDash] Uploading an Image to Generate an ID Badge", \
+"Section",ExpressionUUID->"18acb06e-88b7-4c7f-8874-d9c325033bc9"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["\"\<Image\>\""], "InlineWL", "Input",
+  ShowAutoStyles->True,
+  ShowSyntaxStyles->True,
+  LanguageCategory->"Input",
+  ShowStringCharacters->True,ExpressionUUID->
+  "3eb9b97f-b94d-43ad-a838-fc0f81fe1dba"],
+ " interpreter adds an upload field. The action function receives the \
+uploaded photo as an ",
+ "Image",
+ ", composites it into a badge graphic, and returns it as a PNG: "
+}], "Text",ExpressionUUID->"4fbbc921-20f2-482c-9d82-d70b487d47c6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"badgeForm", "=", 
+   RowBox[{"FormFunction", "[", "\[IndentingNewLine]", "  ", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", "    ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<photo\>\"", ",", "\"\<Upload Your Photo:\>\""}], "}"}],
+          "->", "\"\<Image\>\""}], "}"}], ",", "\[IndentingNewLine]", "    ", 
+       
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<name\>\"", ",", "\"\<Full Name:\>\""}], "}"}], "->", 
+         RowBox[{"\"\<String\>\"", "->", "\"\<Ada Lovelace\>\""}]}], "}"}], ",",
+        "\[IndentingNewLine]", "    ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<role\>\"", ",", "\"\<Job Title:\>\""}], "}"}], "->", 
+         RowBox[{"\"\<String\>\"", "->", "\"\<Engineer\>\""}]}], "}"}], ",", 
+       "\[IndentingNewLine]", "    ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<accent\>\"", ",", "\"\<Accent Color:\>\""}], "}"}], "->", 
+         RowBox[{"\"\<Color\>\"", "->", 
+          RowBox[{"Darker", "[", "Blue", "]"}]}]}], "}"}]}], 
+      "\[IndentingNewLine]", "  ", "}"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"Function", "[", 
+      RowBox[{"params", ",", "\[IndentingNewLine]", "    ", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", "      ", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"White", ",", 
+             RowBox[{"Rectangle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"4", ",", "5"}], "}"}], ",", 
+               RowBox[{"RoundingRadius", "->", "0.25"}]}], "]"}]}], "}"}], ",",
+            "\[IndentingNewLine]", "      ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"params", "[", "\"\<accent\>\"", "]"}], ",", 
+             RowBox[{"Rectangle", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "4.2"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"4", ",", "5"}], "}"}], ",", 
+               RowBox[{"RoundingRadius", "->", 
+                RowBox[{"{", 
+                 RowBox[{"0.25", ",", "0.25", ",", "0", ",", "0"}], "}"}]}]}],
+               "]"}]}], "}"}], ",", "\[IndentingNewLine]", "      ", 
+           RowBox[{"Inset", "[", 
+            RowBox[{
+             RowBox[{"params", "[", "\"\<photo\>\"", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "2.85"}], "}"}], ",", "Center", ",", 
+             RowBox[{"{", 
+              RowBox[{"3.2", ",", "2.7"}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", "      ", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"params", "[", "\"\<name\>\"", "]"}], ",", "Bold", ",",
+                "22", ",", 
+               RowBox[{"Darker", "[", "Blue", "]"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "1.15"}], "}"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", "      ", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"params", "[", "\"\<role\>\"", "]"}], ",", "14", ",", 
+               "Gray"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "0.62"}], "}"}]}], "]"}]}], 
+          "\[IndentingNewLine]", "    ", "}"}], ",", 
+         RowBox[{"ImageSize", "->", "420"}], ",", 
+         RowBox[{"AspectRatio", "->", 
+          RowBox[{"5", "/", "4"}]}], ",", 
+         RowBox[{"PlotRangePadding", "->", "None"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "  ", "]"}], ",", "\[IndentingNewLine]", 
+     "  ", "\"\<PNG\>\"", ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"AppearanceRules", "->", 
+      RowBox[{"<|", "\[IndentingNewLine]", "    ", 
+       RowBox[{
+        RowBox[{"\"\<Title\>\"", "->", "\"\<ID Badge Generator\>\""}], ",", 
+        "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<Description\>\"", 
+         "->", "\"\<Upload a photo to have it composited into a personalized \
+ID badge.\>\""}], ",", "\[IndentingNewLine]", "    ", 
+        RowBox[{"\"\<SubmitLabel\>\"", "->", "\"\<Generate Badge\>\""}]}], 
+       "\[IndentingNewLine]", "  ", "|>"}]}], ",", "\[IndentingNewLine]", 
+     "  ", 
+     RowBox[{"PageTheme", "->", "\"\<White\>\""}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{4.002017643093401*^9, 4.0020176560242567`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"df79d16a-a326-490d-a496-33a43e4ee9f4"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"34b2c9c8-33d3-4dd5-a789-f6e23c380b6e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"a79a9b28-bfd2-449f-8596-e647abec8fa2"],
+
+Cell["\<\
+Deploy both forms to the Wolfram Cloud with public permissions: \
+\>", "Text",ExpressionUUID->"81b3fa3a-6f9b-4dd4-ab02-0b430d017745"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"co1", "=", 
+   RowBox[{"CloudDeploy", "[", 
+    RowBox[{"form", ",", 
+     RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"co2", "=", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{"badgeForm", ",", 
+    RowBox[{"Permissions", "->", "\"\<Public\>\""}]}], "]"}]}]}], "Input",
+ CellLabel->"In[30]:=",ExpressionUUID->"2f6ff87a-eb45-4f75-bd3f-f473829e18db"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/4d7be62f-ab9c-4a78-a653-b1edecbe7ae8\"\
+", "https://www.wolframcloud.com/obj/4d7be62f-ab9c-4a78-a653-b1edecbe7ae8"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/4d7be62f-ab9c-4a78-a653-b1edecbe7ae8"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{4.002017178654787*^9, 4.0020173717913237`*^9, 
+  4.002017529285125*^9, 4.0020177262299337`*^9, 4.002017831274259*^9},
+ CellLabel->"Out[30]=",ExpressionUUID->"bf50bf70-8f4e-40d4-b44f-a0565c54a349"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/daec1b69-388d-4eec-8947-b9e704eeaace\"\
+", "https://www.wolframcloud.com/obj/daec1b69-388d-4eec-8947-b9e704eeaace"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/daec1b69-388d-4eec-8947-b9e704eeaace"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{4.002017178654787*^9, 4.0020173717913237`*^9, 
+  4.002017529285125*^9, 4.0020177262299337`*^9, 4.0020178316761417`*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"6d6bdc2f-3006-415d-abb2-21657217419d"]
+}, Open  ]],
+
+Cell["Retrieve the URLs:", "Text",
+ CellChangeTimes->{{4.0020181100085173`*^9, 
+  4.0020181115353003`*^9}},ExpressionUUID->"9a4131cd-ba61-458f-bbff-\
+5c706dc39b14"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"co1", "[", "\"\<URL\>\"", "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"co2", "[", "\"\<URL\>\"", "]"}]}], "Input",
+ CellLabel->"In[16]:=",ExpressionUUID->"639b566b-0121-4de9-b582-e431a301a4a1"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"CloudObject", "[", 
+    TemplateBox[{
+     "\"https://www.wolframcloud.com/obj/d978423a-ba46-4ed8-be10-bca37378ae31\
+\"", "https://www.wolframcloud.com/obj/d978423a-ba46-4ed8-be10-bca37378ae31"},
+     
+     "HyperlinkURL"], "]"}],
+   CloudObject[
+   "https://www.wolframcloud.com/obj/d978423a-ba46-4ed8-be10-bca37378ae31"],
+   SelectWithContents->True], "[", "\<\"URL\"\>", "]"}]], "Output",
+ CellChangeTimes->{{4.002017491942996*^9, 4.002017503462352*^9}},
+ CellLabel->"Out[16]=",ExpressionUUID->"69c22552-40d7-44be-8190-837781acbad9"],
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   RowBox[{"CloudObject", "[", 
+    TemplateBox[{
+     "\"https://www.wolframcloud.com/obj/55b74896-c52b-4fb9-85cb-4b7719cb489b\
+\"", "https://www.wolframcloud.com/obj/55b74896-c52b-4fb9-85cb-4b7719cb489b"},
+     
+     "HyperlinkURL"], "]"}],
+   CloudObject[
+   "https://www.wolframcloud.com/obj/55b74896-c52b-4fb9-85cb-4b7719cb489b"],
+   SelectWithContents->True], "[", "\<\"URL\"\>", "]"}]], "Output",
+ CellChangeTimes->{{4.002017491942996*^9, 4.0020175034642553`*^9}},
+ CellLabel->"Out[17]=",ExpressionUUID->"c3546df4-a9a7-4e79-9900-1ac7b78951e4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Try It in the Browser", "Subsection",ExpressionUUID->"8a93723b-1882-42d7-99ae-e58189654816"],
+
+Cell[TextData[{
+ "1. Open ",
+ Cell[BoxData[Cell["co1",
+   Background->None,ExpressionUUID->"f027040b-621b-4785-990f-45ff02e5c397"]], 
+  "InlineCode",ExpressionUUID->"4fd92a5f-3927-477b-b44d-5a59631f90b3"],
+ ". Notice the banner image in the title, the styled description, and the \
+logo placed beside the heading in the layout."
+}], "Text",ExpressionUUID->"391fe01f-6685-4a39-992a-a4611f7556a8"],
+
+Cell[TextData[{
+ "2. Open ",
+ Cell[BoxData[Cell["co2",
+   Background->None,ExpressionUUID->"a837e6ef-e35a-4f7c-9afc-3f8ebba1452a"]], 
+  "InlineCode",ExpressionUUID->"4dc8d7cf-db30-48d2-a581-ab69b9dca78a"],
+ ". The photo field renders an upload control. Choose an image file, enter a \
+name and role, and submit. The result returns a PNG of the composited ID \
+badge. "
+}], "Text",ExpressionUUID->"bdef495b-bce1-4f16-b9cb-5482c15123d6"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"d4dd2963-4d40-4375-a7dd-fa5da99b4706"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["5. Delete the Cloud Objects", "Section",ExpressionUUID->"e748904d-bea5-4df9-a433-94cfaa624a5d"],
+
+Cell["When testing is complete, delete both deployments: ", "CodeText",ExpressionUUID->"97385d63-0b23-4331-82d3-86ee25ef07f3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DeleteObject", "[", "co1", "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"DeleteObject", "[", "co2", "]"}]}], "Input",
+ CellLabel->"In[28]:=",ExpressionUUID->"559f1538-7aea-4550-ba0b-5a75bb623e72"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a83bd6d1-c378-4ba4-8c49-4f0e587986a8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 101, 0, 70, "Title",ExpressionUUID->"b89e2cf3-3cd1-4452-a19a-a6dc66c8b279"],
+Cell[680, 24, 568, 10, 70, "Text",ExpressionUUID->"7188f038-a38b-4023-8c69-da4f92c20e15"],
+Cell[1251, 36, 596, 20, 70, "Text",ExpressionUUID->"4110b1ec-7b81-4322-ab8d-9ecc3b0df646"],
+Cell[CellGroupData[{
+Cell[1872, 60, 98, 0, 70, "Section",ExpressionUUID->"dd3c39ca-5ed4-4924-b0c8-0fc6568f09c9"],
+Cell[1973, 62, 1166, 35, 70, "Item",ExpressionUUID->"7945ea9c-d184-4bbf-a629-44ba9a3e1fe4"],
+Cell[3142, 99, 303, 4, 70, "Item",ExpressionUUID->"793fd3a7-eeee-49c5-9e13-a70f43b5f542"],
+Cell[3448, 105, 787, 20, 70, "Item",ExpressionUUID->"37f18069-738d-427d-b6bc-501c1056a97b"],
+Cell[4238, 127, 953, 29, 70, "Item",ExpressionUUID->"01f6933c-79eb-4216-a930-ead1c8e90589"],
+Cell[5194, 158, 206, 8, 70, "Item",ExpressionUUID->"6302293e-1689-4972-8568-eb06d6251ae9"],
+Cell[5403, 168, 596, 20, 70, "Text",ExpressionUUID->"771bcb2c-2e40-489f-9926-c2b36a29ca12"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6036, 193, 154, 2, 70, "Section",ExpressionUUID->"d6e28409-b49b-4cc3-be99-54c27ec3c8ee"],
+Cell[6193, 197, 202, 3, 70, "Text",ExpressionUUID->"b32d986a-15a0-4abe-9276-76a4fb076be1"],
+Cell[6398, 202, 3609, 90, 70, "Input",ExpressionUUID->"b89f4ec2-5f68-4519-940c-5b1b80ee498d"],
+Cell[10010, 294, 480, 13, 70, "CodeText",ExpressionUUID->"0ea22f0e-3cec-4811-8205-2b3275ad0962"],
+Cell[10493, 309, 6646, 145, 70, "Input",ExpressionUUID->"3592a0ec-a631-40dc-9796-09da535fe42b"],
+Cell[17142, 456, 596, 20, 70, "Text",ExpressionUUID->"7952fa3c-8cce-43f6-b233-218635439735"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17775, 481, 143, 1, 70, "Section",ExpressionUUID->"18acb06e-88b7-4c7f-8874-d9c325033bc9"],
+Cell[17921, 484, 485, 12, 70, "Text",ExpressionUUID->"4fbbc921-20f2-482c-9d82-d70b487d47c6"],
+Cell[18409, 498, 4753, 108, 70, "Input",ExpressionUUID->"df79d16a-a326-490d-a496-33a43e4ee9f4"],
+Cell[23165, 608, 596, 20, 70, "Text",ExpressionUUID->"34b2c9c8-33d3-4dd5-a789-f6e23c380b6e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23798, 633, 104, 0, 70, "Section",ExpressionUUID->"a79a9b28-bfd2-449f-8596-e647abec8fa2"],
+Cell[23905, 635, 143, 2, 70, "Text",ExpressionUUID->"81b3fa3a-6f9b-4dd4-ab02-0b430d017745"],
+Cell[CellGroupData[{
+Cell[24073, 641, 459, 11, 70, "Input",ExpressionUUID->"2f6ff87a-eb45-4f75-bd3f-f473829e18db"],
+Cell[24535, 654, 613, 12, 70, "Output",ExpressionUUID->"bf50bf70-8f4e-40d4-b44f-a0565c54a349"],
+Cell[25151, 668, 615, 12, 70, "Output",ExpressionUUID->"6d6bdc2f-3006-415d-abb2-21657217419d"]
+}, Open  ]],
+Cell[25781, 683, 164, 3, 70, "Text",ExpressionUUID->"9a4131cd-ba61-458f-bbff-5c706dc39b14"],
+Cell[CellGroupData[{
+Cell[25970, 690, 250, 4, 70, "Input",ExpressionUUID->"639b566b-0121-4de9-b582-e431a301a4a1"],
+Cell[26223, 696, 593, 13, 70, "Output",ExpressionUUID->"69c22552-40d7-44be-8190-837781acbad9"],
+Cell[26819, 711, 595, 13, 70, "Output",ExpressionUUID->"c3546df4-a9a7-4e79-9900-1ac7b78951e4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27451, 729, 98, 0, 70, "Subsection",ExpressionUUID->"8a93723b-1882-42d7-99ae-e58189654816"],
+Cell[27552, 731, 395, 7, 70, "Text",ExpressionUUID->"391fe01f-6685-4a39-992a-a4611f7556a8"],
+Cell[27950, 740, 435, 8, 70, "Text",ExpressionUUID->"bdef495b-bce1-4f16-b9cb-5482c15123d6"],
+Cell[28388, 750, 596, 20, 70, "Text",ExpressionUUID->"d4dd2963-4d40-4375-a7dd-fa5da99b4706"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29033, 776, 101, 0, 70, "Section",ExpressionUUID->"e748904d-bea5-4df9-a433-94cfaa624a5d"],
+Cell[29137, 778, 126, 0, 70, "CodeText",ExpressionUUID->"97385d63-0b23-4331-82d3-86ee25ef07f3"],
+Cell[29266, 780, 252, 4, 70, "Input",ExpressionUUID->"559f1538-7aea-4550-ba0b-5a75bb623e72"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

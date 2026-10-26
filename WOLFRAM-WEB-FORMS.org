@@ -9,8 +9,9 @@ controllability, and how it handles dynamic updates between form fields.
 - *Controllability*: Extremely high at a symbolic level. You can define
   field validation via =Interpreter=, assign concrete UI controls
   (=Slider=, =RadioButtonBar=, =PopupMenu=, =Checkbox=), construct
-  custom grid/column layouts via =FormLayoutFunction=, and style forms
-  using =AppearanceRules= and =PageTheme=.
+  custom grid/column layouts via =FormLayoutFunction=, embed images and
+  graphics for branding or media upload, and style forms using
+  =AppearanceRules= and =PageTheme=.
 - *Compatibility with =Dynamic[...]=*: *Web forms do /not/ use
   client-side notebook-style =Dynamic= bindings.* In a web form,
   =Dynamic[x]= is not compiled into a live reactive JavaScript
@@ -71,7 +72,7 @@ FormObject[{
 --------------
 
 ** 3. Controllability
-Wolfram Web Forms provide symbolic control across four main dimensions:
+Wolfram Web Forms provide symbolic control across six main dimensions:
 
 *** A. Field Types & Semantic Validation (=Interpreter=)
 Every field uses the Wolfram =Interpreter= engine to validate, parse,
@@ -133,6 +134,92 @@ Whether the field is marked required.
 
 - *Themes*: =PageTheme -> "White"= (default), ="Cerulean"=, ="Navy"=,
   ="Light"=, etc.
+
+*** E. Embedding Images & Media
+Web forms can embed images in three distinct places:
+
+1. *Form chrome via =AppearanceRules=*: =AppearanceRules= values such as
+   ="Title"=, ="Description"=, and ="SubmitLabel"= do not have to be
+   strings. They accept any renderable Wolfram expression (=Image=,
+   =Graphics=, or =Style=), which the engine rasterizes and embeds
+   directly into the generated HTML:
+
+   #+begin_src wl
+   AppearanceRules -> <|
+     "Title" -> Rasterize[
+       Graphics[{Darker[Blue], Rectangle[{-300, -40}, {300, 40}],
+         Text[Style["ACME CONFERENCE 2024", White, Bold, 26], {0, 0}]},
+         ImageSize -> {600, 92}],
+       ImageSize -> {600, 92}],
+     "Description" -> Style["Register below.", Italic, Gray]
+   |>
+   #+end_src
+
+2. *Inside =FormLayoutFunction=*: The layout function can mix images and
+   graphics with controls using =Row=, =Column=, =Grid=, =Panel=, and
+   =Delimiter=:
+
+   #+begin_src wl
+   FormLayoutFunction -> Function[
+     Column[{
+       Row[{logo, Spacer[15], Style["Attendee Registration", Bold, 18]}],
+       Delimiter,
+       Grid[{{#["name", "Label"], #["name", "Control"]}}]
+     }]
+   ]
+   #+end_src
+
+3. *User uploads via the ="Image"= interpreter*: A field declared with
+   interpreter ="Image"= renders a file-upload control and delivers a
+   native =Image= expression to the action function, which can composite
+   or transform it:
+
+   #+begin_src wl
+   FormFunction[
+     {{"photo", "Upload Your Photo:"} -> "Image"},
+     Function[params,
+       Graphics[{Inset[params["photo"], {2, 2.85}, Center, {3.2, 2.7}]},
+         ImageSize -> 420]],
+     "PNG"
+   ]
+   #+end_src
+
+- *Image output*: The third argument of =FormFunction= / =FormPage= can
+  be ="PNG"=, ="JPEG"=, or ="GIF"= to return the result as an image.
+
+*** F. Advanced Formatting & Sectioned Layouts
+Beyond flat stacks, =FormLayoutFunction= supports sectioned, multi-panel
+layouts built from nested =Column= / =Row= / =Grid=, =Delimiter=
+separators, and custom section headers:
+
+#+begin_src wl
+sectionHeader[text_] := Row[{
+  Graphics[{Orange, Rectangle[{0, 0}, {1, 1}]}, ImageSize -> {5, 16}],
+  Spacer[5], Style[text, Bold, 14, Darker[Blue]]
+}];
+
+FormLayoutFunction -> Function[
+  Column[{
+    sectionHeader["PROJECT DETAILS"],
+    Grid[{{#["projectName", "Label"], #["projectName", "Control"]}},
+      Alignment -> {{Right, Left}, Center}, Spacings -> {2, 1}],
+    Delimiter,
+    sectionHeader["BUDGET"],
+    Grid[{{#["budget", "Label"], #["budget", "Control"]}},
+      Alignment -> {{Right, Left}, Center}, Spacings -> {2, 1}]
+  }]
+]
+#+end_src
+
+- *Grid formatting options*: =Alignment=, =Spacings=, =Dividers=,
+  =Background=, =Frame=, =FrameStyle=, and =ItemSize= give fine-grained
+  control over multi-column field layouts.
+- *Field label placement*: =AppearanceRules -> "ItemLayout"= can be
+  ="Vertical"=, ="Horizontal"=, or ="Inline"=.
+- *Non-textual =AppearanceRules=*: ="Title"= and ="Description"= accept
+  styled or graphical expressions, and style keys such as
+  ="FormTitleStyle"= / ="FormDescriptionStyle"= further customize
+  headings.
 
 --------------
 
@@ -215,6 +302,7 @@ FormFunction[
 | *Data Validation*        | Built-in via Wolfram =Interpreter=                          | Manual (via Wolfram Language logic in dynamic expressions)      | Managed at API boundary via =APIFunction= arguments          |
 | *Field-to-Field Updates* | Dependent fields reloaded via HTTP cycle                  | Immediate client-side reactive variable binding                 | Handled via client framework (React, Vue, or vanilla JS)   |
 | *Layout Control*         | Programmatic via =FormLayoutFunction= & =AppearanceRules=     | Wolfram layout primitives (=Column=, =Row=, =Grid=) inside the module | Unlimited (full HTML, CSS, custom UI components)           |
+| *Images & Media*         | Banners/logos via =AppearanceRules= & =FormLayoutFunction=; upload via ="Image"= interpreter; =PNG=/=JPEG= output | Images & graphics inside =DynamicModule= with live preview | Unlimited (HTML/CSS/JS media handling)                     |
 
 --------------
 
@@ -233,3 +321,9 @@ FormFunction[
 3. *Use =APIFunction= + Custom HTML/JS* when:
    - You are integrating Wolfram computation into an existing frontend
      or require complex, arbitrary client-side state transitions.
+4. *Use =AppearanceRules= images / =FormLayoutFunction= branding and the
+   ="Image"= interpreter* when:
+   - You want logos, banners, or inline graphics in a symbolic form.
+   - You need image upload and image output without hand-written HTML.
+   - Note: live, pre-submit image preview still requires
+     =DynamicModule= / custom JS, per the HTTP round-trip model above.

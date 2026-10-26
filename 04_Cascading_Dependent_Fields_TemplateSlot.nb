@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     28684,        740]
-NotebookOptionsPosition[     24421,        668]
-NotebookOutlinePosition[     24813,        684]
-CellTagsIndexPosition[     24770,        681]
+NotebookDataLength[     26277,        679]
+NotebookOptionsPosition[     22029,        607]
+NotebookOutlinePosition[     22421,        623]
+CellTagsIndexPosition[     22378,        620]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,42 +22,11 @@ Notebook[{
 Cell[CellGroupData[{
 Cell["Cascading Dependent Fields with TemplateSlot and Autosubmit", "Title",ExpressionUUID->"53682ab3-d2a3-4c8c-9a43-a5134d80163a"],
 
-Cell[TextData[{
- "This notebook demonstrates how to create dynamic web forms with \
-interdependent fields using the Wolfram Templating Engine (",
- Cell[BoxData[
-  TemplateBox[{
-   "TemplateSlot", "paclet:ref/TemplateSlot", 
-    "https://reference.wolfram.com/language/ref/TemplateSlot.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "4ed64070-4043-4b81-903b-f9524465ac4d"],
- " and ",
- Cell[BoxData[
-  TemplateBox[{
-   "TemplateExpression", "paclet:ref/TemplateExpression", 
-    "https://reference.wolfram.com/language/ref/TemplateExpression.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "d69face5-d329-40a4-af4a-5b09b5a8133a"],
- "). "
-}], "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
+Cell["\<\
+This notebook demonstrates how to create dynamic web forms with \
+interdependent fields using the Wolfram Templating Engine (TemplateSlot and \
+TemplateExpression). \
+\>", "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -99,26 +68,10 @@ Cell[TextData[{
  " Does Not Work in Web Forms"
 }], "Subsection",ExpressionUUID->"fcffdab8-c46a-4f53-880c-004fe65b37c7"],
 
-Cell[TextData[{
- "In desktop Mathematica notebooks, ",
- Cell[BoxData[
-  TemplateBox[{
-   "Dynamic", "paclet:ref/Dynamic", 
-    "https://reference.wolfram.com/language/ref/Dynamic.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "efe6dbe9-f601-45e1-ad01-e67b97c17a5a"],
- " creates a live client-side reactive binding within the front-end \
-preemptive evaluation loop."
-}], "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
+Cell["\<\
+In desktop Mathematica notebooks, Dynamic creates a live client-side reactive \
+binding within the front-end preemptive evaluation loop.\
+\>", "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
 
 Cell[TextData[{
  "However, ",
@@ -255,21 +208,7 @@ Cell[TextData[{
  StyleBox["Server Re-evaluation",
   FontWeight->Bold],
  ": The engine evaluates the ",
- Cell[BoxData[
-  TemplateBox[{
-   "TemplateExpression", "paclet:ref/TemplateExpression", 
-    "https://reference.wolfram.com/language/ref/TemplateExpression.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "2580ee0e-08ef-4d21-a48d-6742320d5cd9"],
+ "TemplateExpression",
  " with the chosen category and returns the updated form, now unlocking the \
 populated ",
  Cell[BoxData["\"\<topic\>\""], "InlineWL", "Input",
@@ -684,62 +623,62 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[576, 22, 131, 0, 157, "Title",ExpressionUUID->"53682ab3-d2a3-4c8c-9a43-a5134d80163a"],
-Cell[710, 24, 1449, 35, 55, "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
-Cell[2162, 61, 596, 20, 49, "Text",ExpressionUUID->"c15de6e0-a9c0-4e60-ae5b-9eb21bb27c20"],
+Cell[576, 22, 131, 0, 70, "Title",ExpressionUUID->"53682ab3-d2a3-4c8c-9a43-a5134d80163a"],
+Cell[710, 24, 244, 4, 70, "Text",ExpressionUUID->"1e3e585a-2e1b-4b93-95c9-61e0b7977e4c"],
+Cell[957, 30, 596, 20, 70, "Text",ExpressionUUID->"c15de6e0-a9c0-4e60-ae5b-9eb21bb27c20"],
 Cell[CellGroupData[{
-Cell[2783, 85, 98, 0, 66, "Section",ExpressionUUID->"5863aa0a-5377-4f96-bf89-7f0c40b2abb5"],
+Cell[1578, 54, 98, 0, 70, "Section",ExpressionUUID->"5863aa0a-5377-4f96-bf89-7f0c40b2abb5"],
 Cell[CellGroupData[{
-Cell[2906, 89, 373, 10, 53, "Subsection",ExpressionUUID->"fcffdab8-c46a-4f53-880c-004fe65b37c7"],
-Cell[3282, 101, 806, 19, 55, "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
-Cell[4091, 122, 471, 13, 55, "Text",ExpressionUUID->"72793333-6e0c-4519-943c-c54d8307d095"],
-Cell[4565, 137, 183, 5, 30, "Item",ExpressionUUID->"617585ff-ced7-4e58-b15b-e2f8493c836a"],
-Cell[4751, 144, 367, 7, 30, "Item",ExpressionUUID->"192f6f23-753a-4d83-9b1a-ee324eabe7be"]
+Cell[1701, 58, 373, 10, 70, "Subsection",ExpressionUUID->"fcffdab8-c46a-4f53-880c-004fe65b37c7"],
+Cell[2077, 70, 215, 3, 70, "Text",ExpressionUUID->"f7604dd1-9bb4-4ff3-8a73-89392347da13"],
+Cell[2295, 75, 471, 13, 70, "Text",ExpressionUUID->"72793333-6e0c-4519-943c-c54d8307d095"],
+Cell[2769, 90, 183, 5, 70, "Item",ExpressionUUID->"617585ff-ced7-4e58-b15b-e2f8493c836a"],
+Cell[2955, 97, 367, 7, 70, "Item",ExpressionUUID->"192f6f23-753a-4d83-9b1a-ee324eabe7be"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5155, 156, 154, 2, 53, "Subsection",ExpressionUUID->"b7925ba9-9ec5-40fe-a3bf-137f9291a10f"],
-Cell[5312, 160, 177, 3, 33, "Text",ExpressionUUID->"12f1cf0f-cf04-49c7-9d34-5002cfbf8aee"],
-Cell[5492, 165, 421, 10, 30, "Item",ExpressionUUID->"455bdfd7-ea44-4552-9e4d-38151caf855a"],
-Cell[5916, 177, 443, 10, 50, "Item",ExpressionUUID->"b41867ff-e2a6-4399-b0ff-ac83abf61598"]
+Cell[3359, 109, 154, 2, 70, "Subsection",ExpressionUUID->"b7925ba9-9ec5-40fe-a3bf-137f9291a10f"],
+Cell[3516, 113, 177, 3, 70, "Text",ExpressionUUID->"12f1cf0f-cf04-49c7-9d34-5002cfbf8aee"],
+Cell[3696, 118, 421, 10, 70, "Item",ExpressionUUID->"455bdfd7-ea44-4552-9e4d-38151caf855a"],
+Cell[4120, 130, 443, 10, 70, "Item",ExpressionUUID->"b41867ff-e2a6-4399-b0ff-ac83abf61598"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6396, 192, 117, 0, 53, "Subsection",ExpressionUUID->"1ff8f7d4-de6c-4ff6-ad51-3954669c0c83"],
-Cell[6516, 194, 998, 30, 55, "Text",ExpressionUUID->"05003ce8-b022-400b-9e53-e845dba5db78"],
-Cell[7517, 226, 627, 16, 55, "Text",ExpressionUUID->"7a74fea7-ce49-44bc-92b5-80ff94333f56"],
-Cell[8147, 244, 264, 6, 55, "Text",ExpressionUUID->"27935906-aef6-4e89-aefd-cb163c0710b1"],
-Cell[8414, 252, 1120, 29, 55, "Text",ExpressionUUID->"d9dae258-15d6-4bd4-b937-61d87bce7e7f"],
-Cell[9537, 283, 596, 20, 49, "Text",ExpressionUUID->"f562466d-13ae-465e-8548-8266d8ae00fa"]
+Cell[4600, 145, 117, 0, 70, "Subsection",ExpressionUUID->"1ff8f7d4-de6c-4ff6-ad51-3954669c0c83"],
+Cell[4720, 147, 998, 30, 70, "Text",ExpressionUUID->"05003ce8-b022-400b-9e53-e845dba5db78"],
+Cell[5721, 179, 627, 16, 70, "Text",ExpressionUUID->"7a74fea7-ce49-44bc-92b5-80ff94333f56"],
+Cell[6351, 197, 264, 6, 70, "Text",ExpressionUUID->"27935906-aef6-4e89-aefd-cb163c0710b1"],
+Cell[6618, 205, 524, 15, 70, "Text",ExpressionUUID->"d9dae258-15d6-4bd4-b937-61d87bce7e7f"],
+Cell[7145, 222, 596, 20, 70, "Text",ExpressionUUID->"f562466d-13ae-465e-8548-8266d8ae00fa"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[10182, 309, 114, 0, 66, "Section",ExpressionUUID->"64400821-6615-4d27-8515-7b1e2bc9751d"],
-Cell[10299, 311, 253, 4, 55, "Text",ExpressionUUID->"48c7f798-1048-413e-a122-ebc0c084f03f"],
-Cell[10555, 317, 4717, 97, 744, "Input",ExpressionUUID->"e3e9bcb1-0a6b-4372-9849-8c375b328c1c"],
-Cell[15275, 416, 4819, 98, 744, "Input",ExpressionUUID->"72a80b20-24ec-48d5-8b9f-46f11265e1e4"],
-Cell[20097, 516, 596, 20, 49, "Text",ExpressionUUID->"7af71257-e604-4db9-afa1-7c61f3472cc9"]
+Cell[7790, 248, 114, 0, 70, "Section",ExpressionUUID->"64400821-6615-4d27-8515-7b1e2bc9751d"],
+Cell[7907, 250, 253, 4, 70, "Text",ExpressionUUID->"48c7f798-1048-413e-a122-ebc0c084f03f"],
+Cell[8163, 256, 4717, 97, 70, "Input",ExpressionUUID->"e3e9bcb1-0a6b-4372-9849-8c375b328c1c"],
+Cell[12883, 355, 4819, 98, 70, "Input",ExpressionUUID->"72a80b20-24ec-48d5-8b9f-46f11265e1e4"],
+Cell[17705, 455, 596, 20, 70, "Text",ExpressionUUID->"7af71257-e604-4db9-afa1-7c61f3472cc9"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20730, 541, 104, 0, 66, "Section",ExpressionUUID->"133665e6-d6ba-477f-ac30-adb02d862a4d"],
-Cell[20837, 543, 92, 0, 36, "CodeText",ExpressionUUID->"1ad4fb09-db66-44b3-a271-2a45096ec6e0"],
+Cell[18338, 480, 104, 0, 70, "Section",ExpressionUUID->"133665e6-d6ba-477f-ac30-adb02d862a4d"],
+Cell[18445, 482, 92, 0, 70, "CodeText",ExpressionUUID->"1ad4fb09-db66-44b3-a271-2a45096ec6e0"],
 Cell[CellGroupData[{
-Cell[20954, 547, 243, 5, 29, "Input",ExpressionUUID->"6d66f5b6-0259-45b0-b98b-e22c72ea06e2"],
-Cell[21200, 554, 544, 11, 34, "Output",ExpressionUUID->"330bba8a-0591-43aa-b7f2-133f913de829"]
+Cell[18562, 486, 243, 5, 70, "Input",ExpressionUUID->"6d66f5b6-0259-45b0-b98b-e22c72ea06e2"],
+Cell[18808, 493, 544, 11, 70, "Output",ExpressionUUID->"330bba8a-0591-43aa-b7f2-133f913de829"]
 }, Open  ]],
-Cell[21759, 568, 93, 0, 36, "CodeText",ExpressionUUID->"9a3d8a76-e5e7-4e23-b9a7-17257c03d78a"],
-Cell[21855, 570, 120, 1, 29, "Input",ExpressionUUID->"fba522ee-ff8a-4e37-8139-b8bcc0fb4d1d"],
+Cell[19367, 507, 93, 0, 70, "CodeText",ExpressionUUID->"9a3d8a76-e5e7-4e23-b9a7-17257c03d78a"],
+Cell[19463, 509, 120, 1, 70, "Input",ExpressionUUID->"fba522ee-ff8a-4e37-8139-b8bcc0fb4d1d"],
 Cell[CellGroupData[{
-Cell[22000, 575, 99, 0, 53, "Subsection",ExpressionUUID->"e909d0e0-85bf-45e0-a96f-86343f5c2adf"],
-Cell[22102, 577, 261, 8, 33, "Text",ExpressionUUID->"ef98c8b0-955f-4fc8-aceb-415302ea25ef"],
-Cell[22366, 587, 148, 5, 33, "Text",ExpressionUUID->"bffb4957-0785-45df-bff1-9a3b0969d6c1"],
-Cell[22517, 594, 425, 17, 55, "Text",ExpressionUUID->"c437cc72-74d6-415a-a2bf-ff4e43a4ceb2"],
-Cell[22945, 613, 418, 17, 55, "Text",ExpressionUUID->"de40f73a-4da4-46d3-8eef-6ed61f6ee8ab"],
-Cell[23366, 632, 596, 20, 49, "Text",ExpressionUUID->"a93fe379-275e-452a-9c45-e4c732a660b2"]
+Cell[19608, 514, 99, 0, 70, "Subsection",ExpressionUUID->"e909d0e0-85bf-45e0-a96f-86343f5c2adf"],
+Cell[19710, 516, 261, 8, 70, "Text",ExpressionUUID->"ef98c8b0-955f-4fc8-aceb-415302ea25ef"],
+Cell[19974, 526, 148, 5, 70, "Text",ExpressionUUID->"bffb4957-0785-45df-bff1-9a3b0969d6c1"],
+Cell[20125, 533, 425, 17, 70, "Text",ExpressionUUID->"c437cc72-74d6-415a-a2bf-ff4e43a4ceb2"],
+Cell[20553, 552, 418, 17, 70, "Text",ExpressionUUID->"de40f73a-4da4-46d3-8eef-6ed61f6ee8ab"],
+Cell[20974, 571, 596, 20, 70, "Text",ExpressionUUID->"a93fe379-275e-452a-9c45-e4c732a660b2"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24011, 658, 100, 0, 66, "Section",ExpressionUUID->"9a08a3ff-91de-4acb-904f-7e2216583d46"],
-Cell[24114, 660, 131, 0, 36, "CodeText",ExpressionUUID->"ef2552ae-db33-4c67-bcbf-07b5b4084b3e"],
-Cell[24248, 662, 145, 2, 29, "Input",ExpressionUUID->"caf9f143-f9d5-4275-8dbc-82a8bd13a31e"]
+Cell[21619, 597, 100, 0, 70, "Section",ExpressionUUID->"9a08a3ff-91de-4acb-904f-7e2216583d46"],
+Cell[21722, 599, 131, 0, 70, "CodeText",ExpressionUUID->"ef2552ae-db33-4c67-bcbf-07b5b4084b3e"],
+Cell[21856, 601, 145, 2, 70, "Input",ExpressionUUID->"caf9f143-f9d5-4275-8dbc-82a8bd13a31e"]
 }, Open  ]]
 }, Open  ]]
 }
@@ -747,4 +686,3 @@ Cell[24248, 662, 145, 2, 29, "Input",ExpressionUUID->"caf9f143-f9d5-4275-8dbc-82
 *)
 
 (* End of internal cache information *)
-

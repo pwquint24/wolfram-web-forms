@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     43619,       1057]
-NotebookOptionsPosition[     38895,        982]
-NotebookOutlinePosition[     39286,        998]
-CellTagsIndexPosition[     39243,        995]
+NotebookDataLength[     32460,        771]
+NotebookOptionsPosition[     27769,        696]
+NotebookOutlinePosition[     28160,        712]
+CellTagsIndexPosition[     28117,        709]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,44 +24,12 @@ Cell["\<\
 Custom Layouts and Controls with FormObject and FormLayoutFunction\
 \>", "Title",ExpressionUUID->"38b0dabf-40c2-433a-a790-bfee2516786f"],
 
-Cell[TextData[{
- "This notebook demonstrates how to build professional web forms with custom \
-layouts using ",
- Cell[BoxData[
-  TemplateBox[{
-   "FormObject", "paclet:ref/FormObject", 
-    "https://reference.wolfram.com/language/ref/FormObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "a273c746-595d-4c15-96c1-2f9edacc280c"],
- " and ",
- Cell[BoxData[
-  TemplateBox[{
-   "FormLayoutFunction", "paclet:ref/FormLayoutFunction", 
-    "https://reference.wolfram.com/language/ref/FormLayoutFunction.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "1c328f04-8ddc-4219-a8c8-8b99e15a728a"],
- ", and how to assign concrete UI controls like sliders, radio buttons, popup \
-menus, and checkboxes. \nThe Slider control here doesn\[CloseCurlyQuote]t \
-work. "
-}], "Text",
+Cell["\<\
+This notebook demonstrates how to build professional web forms with custom \
+layouts using FormObject and FormLayoutFunction, and how to assign concrete \
+UI controls like sliders, radio buttons, popup menus, and checkboxes. 
+The Slider control here doesn\[CloseCurlyQuote]t work. \
+\>", "Text",
  CellChangeTimes->{{4.001914960481988*^9, 
   4.001914969236319*^9}},ExpressionUUID->"cde97bff-4a9c-4173-9879-\
 9759c1e0049b"],
@@ -92,25 +60,10 @@ Cell[CellGroupData[{
 
 Cell["1. Concepts Demonstrated", "Section",ExpressionUUID->"4d3625a3-2872-4909-b70a-5cdd6cd25e78"],
 
-Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "FormObject", "paclet:ref/FormObject", 
-    "https://reference.wolfram.com/language/ref/FormObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "3df0b41f-7892-4a6e-8942-3e9565e95582"],
- ": A symbolic object that defines field metadata (interpreters, controls, \
-labels, hints, initial inputs, and requirements)."
-}], "Item",ExpressionUUID->"b67df27d-891d-4b4a-9dbe-2262648bce62"],
+Cell["\<\
+FormObject: A symbolic object that defines field metadata (interpreters, \
+controls, labels, hints, initial inputs, and requirements).\
+\>", "Item",ExpressionUUID->"b67df27d-891d-4b4a-9dbe-2262648bce62"],
 
 Cell[CellGroupData[{
 
@@ -121,21 +74,7 @@ Cell[TextData[{
 }], "Item",ExpressionUUID->"ada33fd1-a683-4c3c-abbc-b3e4d7dbb6f1"],
 
 Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "Slider", "paclet:ref/Slider", 
-    "https://reference.wolfram.com/language/ref/Slider.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "1c6b0116-fc38-4df5-89e5-42510b6829a9"],
+ "Slider",
  ": Renders as HTML5 ",
  Cell[BoxData[Cell["<input type=\"range\">",
    Background->None,ExpressionUUID->"04aad9d9-6dc3-478c-94fa-2a14f1b42a7d"]], 
@@ -161,21 +100,7 @@ Cell[TextData[{
 }], "Subitem",ExpressionUUID->"a12b0b87-18c0-4964-bb68-62643a621f1f"],
 
 Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "RadioButtonBar", "paclet:ref/RadioButtonBar", 
-    "https://reference.wolfram.com/language/ref/RadioButtonBar.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "da9ad686-4a58-4a7b-844e-de26c8eaf4f1"],
+ "RadioButtonBar",
  ": Renders as ",
  Cell[BoxData[Cell["<input type=\"radio\">",
    Background->None,ExpressionUUID->"1750e11c-f16d-45e4-b17e-4568514938b5"]], 
@@ -184,21 +109,7 @@ Cell[TextData[{
 }], "Subitem",ExpressionUUID->"295de41e-71ef-48b1-9deb-db4b8c304546"],
 
 Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "PopupMenu", "paclet:ref/PopupMenu", 
-    "https://reference.wolfram.com/language/ref/PopupMenu.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "79234b52-0e90-4235-a2c7-c677ebb02a15"],
+ "PopupMenu",
  ": Renders as ",
  Cell[BoxData[Cell["<select><option>...</option></select>",
    Background->None,ExpressionUUID->"0c50d4d0-7322-40a0-9a79-306cf37077c8"]], 
@@ -207,21 +118,7 @@ Cell[TextData[{
 }], "Subitem",ExpressionUUID->"7ea876d8-f136-47ad-8ad6-733efd4fe976"],
 
 Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "Checkbox", "paclet:ref/Checkbox", 
-    "https://reference.wolfram.com/language/ref/Checkbox.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "63dc0b5c-e9a3-459f-87b6-9e08be0eaa9c"],
+ "Checkbox",
  ": Renders as ",
  Cell[BoxData[Cell["<input type=\"checkbox\">",
    Background->None,ExpressionUUID->"db6b8e07-89c0-41f7-bb94-621182df11c3"]], 
@@ -232,26 +129,7 @@ Cell[TextData[{
 
 Cell[CellGroupData[{
 
-Cell[TextData[{
- "How ",
- Cell[BoxData[
-  TemplateBox[{
-   "Slider", "paclet:ref/Slider", 
-    "https://reference.wolfram.com/language/ref/Slider.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "050c6d4c-2f53-4368-a127-8df199e6f93b"],
- " Works in Web Forms",
- ":"
-}], "Item",ExpressionUUID->"1066fff1-58b5-43fb-9ba5-a5acca194817"],
+Cell["How Slider Works in Web Forms:", "Item",ExpressionUUID->"1066fff1-58b5-43fb-9ba5-a5acca194817"],
 
 Cell[TextData[{
  StyleBox["Syntax",
@@ -261,21 +139,7 @@ Cell[TextData[{
    Background->None,ExpressionUUID->"c5e4da38-db73-4d5d-816b-46e1a79e5568"]], 
   "InlineCode",ExpressionUUID->"c83de652-5aa6-446a-a629-96dee0b9d4f5"],
  " (not a function). The range and step are inferred directly from the ",
- Cell[BoxData[
-  TemplateBox[{
-   "Restricted", "paclet:ref/Restricted", 
-    "https://reference.wolfram.com/language/ref/Restricted.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "cf9dc509-d88f-4cf1-82bb-029e9f3a4470"],
+ "Restricted",
  " interpreter."
 }], "Subitem",ExpressionUUID->"f9b48583-8981-4b53-ac12-0baa3b380862"],
 
@@ -291,21 +155,7 @@ Cell[TextData[{
    Background->None,ExpressionUUID->"f37d28af-5752-4d28-9813-eb67b735cd8d"]], 
   "InlineCode",ExpressionUUID->"87b3b094-5692-480a-ba90-74ef76734226"],
  "). In ",
- Cell[BoxData[
-  TemplateBox[{
-   "FormObject", "paclet:ref/FormObject", 
-    "https://reference.wolfram.com/language/ref/FormObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "b302713d-11ed-4721-93fb-ff60bdba65dc"],
+ "FormObject",
  ", the ",
  Cell[BoxData["\"\<Input\>\""], "InlineWL", "Input",
   ShowAutoStyles->True,
@@ -322,21 +172,7 @@ Cell[TextData[{
  StyleBox["Interactivity Model",
   FontWeight->Bold],
  ": Unlike desktop notebook sliders which use client-side ",
- Cell[BoxData[
-  TemplateBox[{
-   "Dynamic", "paclet:ref/Dynamic", 
-    "https://reference.wolfram.com/language/ref/Dynamic.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "fce25d28-4b4b-43ac-87f1-12b680e5ca92"],
+ "Dynamic",
  ", an HTML5 web form slider conforms to HTTP request/response: moving the \
 slider changes the control's value, which is sent to the server upon clicking \
 Submit."
@@ -345,104 +181,10 @@ Submit."
 
 Cell[CellGroupData[{
 
-Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "FormLayoutFunction", "paclet:ref/FormLayoutFunction", 
-    "https://reference.wolfram.com/language/ref/FormLayoutFunction.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "66ffc62d-9fb3-4ed1-b748-b9f7fe63545a"],
- ": A pure function applied to the ",
- Cell[BoxData[
-  TemplateBox[{
-   "FormObject", "paclet:ref/FormObject", 
-    "https://reference.wolfram.com/language/ref/FormObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "0c83e2df-9c1d-4f4f-a32a-1ed891867b27"],
- " that arranges controls using Wolfram layout constructs (",
- Cell[BoxData[
-  TemplateBox[{
-   "Grid", "paclet:ref/Grid", 
-    "https://reference.wolfram.com/language/ref/Grid.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "3c0e905f-30fa-4a08-8259-3d9b1edf6788"],
- ", ",
- Cell[BoxData[
-  TemplateBox[{
-   "Column", "paclet:ref/Column", 
-    "https://reference.wolfram.com/language/ref/Column.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "fa0ecfdc-61c4-44a3-b8ac-8cd051ef1f86"],
- ", ",
- Cell[BoxData[
-  TemplateBox[{
-   "Row", "paclet:ref/Row", 
-    "https://reference.wolfram.com/language/ref/Row.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "b8d01c6d-5ff1-497e-bdb9-0bcec2596f82"],
- ", ",
- Cell[BoxData[
-  TemplateBox[{
-   "Panel", "paclet:ref/Panel", 
-    "https://reference.wolfram.com/language/ref/Panel.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "63d63b73-9e9c-4b56-a605-2339406e9f59"],
- "):"
-}], "Item",ExpressionUUID->"3c6daf4e-bf53-4f4d-8df1-c0deab25ae91"],
+Cell["\<\
+FormLayoutFunction: A pure function applied to the FormObject that arranges \
+controls using Wolfram layout constructs (Grid, Column, Row, Panel):\
+\>", "Item",ExpressionUUID->"3c6daf4e-bf53-4f4d-8df1-c0deab25ae91"],
 
 Cell[TextData[{
  Cell[BoxData[Cell["#[\"key\", \"Label\"]",
@@ -477,37 +219,9 @@ Cell[TextData[{
  StyleBox["Cloud Deployment and Cleanup",
   FontWeight->Bold],
  ": Using ",
- Cell[BoxData[
-  TemplateBox[{
-   "CloudDeploy", "paclet:ref/CloudDeploy", 
-    "https://reference.wolfram.com/language/ref/CloudDeploy.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "79060b81-1a40-4cca-8f41-c357460ea85c"],
+ "CloudDeploy",
  " and ",
- Cell[BoxData[
-  TemplateBox[{
-   "DeleteObject", "paclet:ref/DeleteObject", 
-    "https://reference.wolfram.com/language/ref/DeleteObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "84877806-1a64-4477-8166-9cdabfd0c576"],
+ "DeleteObject",
  "."
 }], "Item",ExpressionUUID->"799c4281-6477-4929-9c5a-bec4f4c8fe0a"],
 
@@ -998,65 +712,65 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[576, 22, 146, 2, 157, "Title",ExpressionUUID->"38b0dabf-40c2-433a-a790-bfee2516786f"],
-Cell[725, 26, 1637, 40, 99, "Text",ExpressionUUID->"cde97bff-4a9c-4173-9879-9759c1e0049b"],
-Cell[2365, 68, 596, 20, 49, "Text",ExpressionUUID->"a89e1816-4ce1-414f-b1f1-04f7be6174e7"],
+Cell[576, 22, 146, 2, 70, "Title",ExpressionUUID->"38b0dabf-40c2-433a-a790-bfee2516786f"],
+Cell[725, 26, 431, 8, 70, "Text",ExpressionUUID->"cde97bff-4a9c-4173-9879-9759c1e0049b"],
+Cell[1159, 36, 596, 20, 70, "Text",ExpressionUUID->"a89e1816-4ce1-414f-b1f1-04f7be6174e7"],
 Cell[CellGroupData[{
-Cell[2986, 92, 98, 0, 66, "Section",ExpressionUUID->"4d3625a3-2872-4909-b70a-5cdd6cd25e78"],
-Cell[3087, 94, 805, 18, 50, "Item",ExpressionUUID->"b67df27d-891d-4b4a-9dbe-2262648bce62"],
+Cell[1780, 60, 98, 0, 70, "Section",ExpressionUUID->"4d3625a3-2872-4909-b70a-5cdd6cd25e78"],
+Cell[1881, 62, 213, 3, 70, "Item",ExpressionUUID->"b67df27d-891d-4b4a-9dbe-2262648bce62"],
 Cell[CellGroupData[{
-Cell[3917, 116, 197, 4, 30, "Item",ExpressionUUID->"ada33fd1-a683-4c3c-abbc-b3e4d7dbb6f1"],
-Cell[4117, 122, 1381, 38, 44, "Subitem",ExpressionUUID->"a12b0b87-18c0-4964-bb68-62643a621f1f"],
-Cell[5501, 162, 911, 21, 25, "Subitem",ExpressionUUID->"295de41e-71ef-48b1-9deb-db4b8c304546"],
-Cell[6415, 185, 911, 21, 25, "Subitem",ExpressionUUID->"7ea876d8-f136-47ad-8ad6-733efd4fe976"],
-Cell[7329, 208, 896, 21, 25, "Subitem",ExpressionUUID->"768ca04d-69ce-4192-b6e6-f2c8237f0526"]
+Cell[2119, 69, 197, 4, 70, "Item",ExpressionUUID->"ada33fd1-a683-4c3c-abbc-b3e4d7dbb6f1"],
+Cell[2319, 75, 809, 24, 70, "Subitem",ExpressionUUID->"a12b0b87-18c0-4964-bb68-62643a621f1f"],
+Cell[3131, 101, 323, 7, 70, "Subitem",ExpressionUUID->"295de41e-71ef-48b1-9deb-db4b8c304546"],
+Cell[3457, 110, 333, 7, 70, "Subitem",ExpressionUUID->"7ea876d8-f136-47ad-8ad6-733efd4fe976"],
+Cell[3793, 119, 320, 7, 70, "Subitem",ExpressionUUID->"768ca04d-69ce-4192-b6e6-f2c8237f0526"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8262, 234, 703, 19, 30, "Item",ExpressionUUID->"1066fff1-58b5-43fb-9ba5-a5acca194817"],
-Cell[8968, 255, 1018, 24, 44, "Subitem",ExpressionUUID->"f9b48583-8981-4b53-ac12-0baa3b380862"],
-Cell[9989, 281, 1468, 37, 44, "Subitem",ExpressionUUID->"42c0649c-e9df-4084-9c2f-a72e037d1f2a"],
-Cell[11460, 320, 952, 22, 62, "Subitem",ExpressionUUID->"359b6833-bb3a-4a2e-9d3b-428a1bacc19d"]
+Cell[4150, 131, 101, 0, 70, "Item",ExpressionUUID->"1066fff1-58b5-43fb-9ba5-a5acca194817"],
+Cell[4254, 133, 438, 10, 70, "Subitem",ExpressionUUID->"f9b48583-8981-4b53-ac12-0baa3b380862"],
+Cell[4695, 145, 888, 23, 70, "Subitem",ExpressionUUID->"42c0649c-e9df-4084-9c2f-a72e037d1f2a"],
+Cell[5586, 170, 378, 8, 70, "Subitem",ExpressionUUID->"359b6833-bb3a-4a2e-9d3b-428a1bacc19d"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12449, 347, 3737, 97, 50, "Item",ExpressionUUID->"3c6daf4e-bf53-4f4d-8df1-c0deab25ae91"],
-Cell[16189, 446, 324, 5, 25, "Subitem",ExpressionUUID->"b68c2905-1b53-4758-9bd0-ec07de6685a9"],
-Cell[16516, 453, 321, 5, 25, "Subitem",ExpressionUUID->"54b1ac5e-17f7-40b0-809e-4e173af2ba73"],
-Cell[16840, 460, 316, 5, 25, "Subitem",ExpressionUUID->"24ec25dd-95da-4870-879f-966032d67ac0"],
-Cell[17159, 467, 321, 5, 25, "Subitem",ExpressionUUID->"3423a7b5-2149-4bd8-ac34-69daafc69f10"]
+Cell[6001, 183, 225, 3, 70, "Item",ExpressionUUID->"3c6daf4e-bf53-4f4d-8df1-c0deab25ae91"],
+Cell[6229, 188, 324, 5, 70, "Subitem",ExpressionUUID->"b68c2905-1b53-4758-9bd0-ec07de6685a9"],
+Cell[6556, 195, 321, 5, 70, "Subitem",ExpressionUUID->"54b1ac5e-17f7-40b0-809e-4e173af2ba73"],
+Cell[6880, 202, 316, 5, 70, "Subitem",ExpressionUUID->"24ec25dd-95da-4870-879f-966032d67ac0"],
+Cell[7199, 209, 321, 5, 70, "Subitem",ExpressionUUID->"3423a7b5-2149-4bd8-ac34-69daafc69f10"]
 }, Open  ]],
-Cell[17495, 475, 1372, 36, 30, "Item",ExpressionUUID->"799c4281-6477-4929-9c5a-bec4f4c8fe0a"],
-Cell[18870, 513, 596, 20, 49, "Text",ExpressionUUID->"c8287e55-4fe9-4816-9c47-a809f8e167c2"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[19503, 538, 115, 0, 66, "Section",ExpressionUUID->"48d6e390-fd28-461d-9523-5752ffe234b2"],
-Cell[19621, 540, 223, 3, 55, "Text",ExpressionUUID->"9f13b1d9-2194-4213-a6da-cd2dc1784969"],
-Cell[19847, 545, 596, 20, 49, "Text",ExpressionUUID->"53ffc020-c0e1-4000-ad0c-23225f9fe38f"],
-Cell[20446, 567, 3903, 80, 682, "Input",ExpressionUUID->"85819058-606b-44da-90ac-d489f61f0a21"],
-Cell[24352, 649, 5776, 121, 580, "Input",ExpressionUUID->"8110ef18-6645-488c-855f-4ba97e76a5ec"],
-Cell[30131, 772, 4939, 107, 539, "Input",ExpressionUUID->"1bf56475-c382-4d9f-9c89-3109c092677c"]
+Cell[7535, 217, 206, 8, 70, "Item",ExpressionUUID->"799c4281-6477-4929-9c5a-bec4f4c8fe0a"],
+Cell[7744, 227, 596, 20, 70, "Text",ExpressionUUID->"c8287e55-4fe9-4816-9c47-a809f8e167c2"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[35107, 884, 104, 0, 66, "Section",ExpressionUUID->"1cdf8ffe-7e3e-42f4-9a33-4ececd5b26a7"],
-Cell[35214, 886, 105, 0, 36, "CodeText",ExpressionUUID->"e100a864-0484-453a-8937-9663820658ae"],
-Cell[CellGroupData[{
-Cell[35344, 890, 288, 6, 29, "Input",ExpressionUUID->"67ff22fc-448a-41a9-8556-6961597800f1"],
-Cell[35635, 898, 715, 14, 34, "Output",ExpressionUUID->"205be321-c764-45e5-ade1-97c09ad63804"]
-}, Open  ]],
-Cell[36365, 915, 93, 0, 36, "CodeText",ExpressionUUID->"15920cc4-ce48-435f-9e3a-6fc5a63e550a"],
-Cell[36461, 917, 114, 1, 29, "Input",ExpressionUUID->"ab45f63e-a408-4cd5-bc59-78b8ad0d2923"],
-Cell[36578, 920, 112, 0, 33, "Text",ExpressionUUID->"0941efab-b6d0-46fd-a293-60fb3a9fbfb1"],
-Cell[36693, 922, 123, 0, 30, "Item",ExpressionUUID->"ced333be-a27d-47dd-bc18-ea0a28080d4e"],
-Cell[36819, 924, 104, 0, 30, "Item",ExpressionUUID->"b02abe3d-267c-4107-9477-65ca59391c20"],
-Cell[36926, 926, 114, 0, 30, "Item",ExpressionUUID->"ac6fd854-3117-4520-a63b-7a6ceeb47296"],
-Cell[37043, 928, 109, 0, 30, "Item",ExpressionUUID->"0f116268-eb59-4798-8b07-3d0774ed8af5"],
-Cell[37155, 930, 103, 0, 30, "Item",ExpressionUUID->"d5851c20-4a0f-47fc-bb07-9327b6348628"],
-Cell[37261, 932, 596, 20, 49, "Text",ExpressionUUID->"96e1f1ba-7069-46dc-8814-e5d41162a6db"]
+Cell[8377, 252, 115, 0, 70, "Section",ExpressionUUID->"48d6e390-fd28-461d-9523-5752ffe234b2"],
+Cell[8495, 254, 223, 3, 70, "Text",ExpressionUUID->"9f13b1d9-2194-4213-a6da-cd2dc1784969"],
+Cell[8721, 259, 596, 20, 70, "Text",ExpressionUUID->"53ffc020-c0e1-4000-ad0c-23225f9fe38f"],
+Cell[9320, 281, 3903, 80, 70, "Input",ExpressionUUID->"85819058-606b-44da-90ac-d489f61f0a21"],
+Cell[13226, 363, 5776, 121, 70, "Input",ExpressionUUID->"8110ef18-6645-488c-855f-4ba97e76a5ec"],
+Cell[19005, 486, 4939, 107, 70, "Input",ExpressionUUID->"1bf56475-c382-4d9f-9c89-3109c092677c"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[37894, 957, 100, 0, 66, "Section",ExpressionUUID->"b1a648f8-2e26-4456-a3cb-dd6c051dfc63"],
-Cell[37997, 959, 126, 0, 36, "CodeText",ExpressionUUID->"56bd8357-30a1-4ea0-85b6-df4bbf363a0e"],
-Cell[38126, 961, 145, 2, 29, "Input",ExpressionUUID->"c96a1eb8-5b51-4d46-bb14-1b028760cd97"],
-Cell[38274, 965, 593, 13, 53, "Input",ExpressionUUID->"5d75222e-a034-4285-9a7a-4892e1e2132c"]
+Cell[23981, 598, 104, 0, 70, "Section",ExpressionUUID->"1cdf8ffe-7e3e-42f4-9a33-4ececd5b26a7"],
+Cell[24088, 600, 105, 0, 70, "CodeText",ExpressionUUID->"e100a864-0484-453a-8937-9663820658ae"],
+Cell[CellGroupData[{
+Cell[24218, 604, 288, 6, 70, "Input",ExpressionUUID->"67ff22fc-448a-41a9-8556-6961597800f1"],
+Cell[24509, 612, 715, 14, 70, "Output",ExpressionUUID->"205be321-c764-45e5-ade1-97c09ad63804"]
+}, Open  ]],
+Cell[25239, 629, 93, 0, 70, "CodeText",ExpressionUUID->"15920cc4-ce48-435f-9e3a-6fc5a63e550a"],
+Cell[25335, 631, 114, 1, 70, "Input",ExpressionUUID->"ab45f63e-a408-4cd5-bc59-78b8ad0d2923"],
+Cell[25452, 634, 112, 0, 70, "Text",ExpressionUUID->"0941efab-b6d0-46fd-a293-60fb3a9fbfb1"],
+Cell[25567, 636, 123, 0, 70, "Item",ExpressionUUID->"ced333be-a27d-47dd-bc18-ea0a28080d4e"],
+Cell[25693, 638, 104, 0, 70, "Item",ExpressionUUID->"b02abe3d-267c-4107-9477-65ca59391c20"],
+Cell[25800, 640, 114, 0, 70, "Item",ExpressionUUID->"ac6fd854-3117-4520-a63b-7a6ceeb47296"],
+Cell[25917, 642, 109, 0, 70, "Item",ExpressionUUID->"0f116268-eb59-4798-8b07-3d0774ed8af5"],
+Cell[26029, 644, 103, 0, 70, "Item",ExpressionUUID->"d5851c20-4a0f-47fc-bb07-9327b6348628"],
+Cell[26135, 646, 596, 20, 70, "Text",ExpressionUUID->"96e1f1ba-7069-46dc-8814-e5d41162a6db"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26768, 671, 100, 0, 70, "Section",ExpressionUUID->"b1a648f8-2e26-4456-a3cb-dd6c051dfc63"],
+Cell[26871, 673, 126, 0, 70, "CodeText",ExpressionUUID->"56bd8357-30a1-4ea0-85b6-df4bbf363a0e"],
+Cell[27000, 675, 145, 2, 70, "Input",ExpressionUUID->"c96a1eb8-5b51-4d46-bb14-1b028760cd97"],
+Cell[27148, 679, 593, 13, 70, "Input",ExpressionUUID->"5d75222e-a034-4285-9a7a-4892e1e2132c"]
 }, Open  ]]
 }, Open  ]]
 }
@@ -1064,4 +778,3 @@ Cell[38274, 965, 593, 13, 53, "Input",ExpressionUUID->"5d75222e-a034-4285-9a7a-4
 *)
 
 (* End of internal cache information *)
-

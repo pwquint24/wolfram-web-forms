@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     21346,        553]
-NotebookOptionsPosition[     17846,        494]
-NotebookOutlinePosition[     18237,        510]
-CellTagsIndexPosition[     18194,        507]
+NotebookDataLength[     16569,        431]
+NotebookOptionsPosition[     13088,        372]
+NotebookOutlinePosition[     13479,        388]
+CellTagsIndexPosition[     13436,        385]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,42 +22,10 @@ Notebook[{
 Cell[CellGroupData[{
 Cell["Instant Web Forms with Semantic Interpreters", "Title",ExpressionUUID->"c603e2f5-d087-4d3b-8d3e-0b02a2182c57"],
 
-Cell[TextData[{
- "This notebook demonstrates how to create and deploy an instant web form to \
-the Wolfram Cloud using ",
- Cell[BoxData[
-  TemplateBox[{
-   "FormFunction", "paclet:ref/FormFunction", 
-    "https://reference.wolfram.com/language/ref/FormFunction.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "5155bc88-9fe4-4b51-a77f-507ebbdc077f"],
- " and ",
- Cell[BoxData[
-  TemplateBox[{
-   "CloudDeploy", "paclet:ref/CloudDeploy", 
-    "https://reference.wolfram.com/language/ref/CloudDeploy.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "18a5d2c5-508d-44b9-9cfe-020982f1b5f7"],
- ". "
-}], "Text",ExpressionUUID->"df3175be-2948-48c4-8139-1ca645cf1f50"],
+Cell["\<\
+This notebook demonstrates how to create and deploy an instant web form to \
+the Wolfram Cloud using FormFunction and CloudDeploy. \
+\>", "Text",ExpressionUUID->"df3175be-2948-48c4-8139-1ca645cf1f50"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -101,27 +69,10 @@ submitted."
 
 Cell[CellGroupData[{
 
-Cell[TextData[{
- "The ",
- Cell[BoxData[
-  TemplateBox[{
-   "Interpreter", "paclet:ref/Interpreter", 
-    "https://reference.wolfram.com/language/ref/Interpreter.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "093ca360-c10e-4114-92fe-eeb37cc20935"],
- " Framework",
- ": Wolfram Web Forms parse and validate user inputs into rich symbolic \
-Wolfram expressions automatically:"
-}], "Item",ExpressionUUID->"02fdb1e8-8685-406f-88be-1dcfa1853181"],
+Cell["\<\
+The Interpreter Framework: Wolfram Web Forms parse and validate user inputs \
+into rich symbolic Wolfram expressions automatically:\
+\>", "Item",ExpressionUUID->"02fdb1e8-8685-406f-88be-1dcfa1853181"],
 
 Cell[TextData[{
  Cell[BoxData["\"\<Country\>\""], "InlineWL", "Input",
@@ -150,21 +101,7 @@ Cell[TextData[{
   ShowStringCharacters->True,ExpressionUUID->
   "6b63a61c-1657-4577-962e-b744bbb7fe90"],
  ": Provides an HTML5 color picker and returns a native ",
- Cell[BoxData[
-  TemplateBox[{
-   "RGBColor", "paclet:ref/RGBColor", 
-    "https://reference.wolfram.com/language/ref/RGBColor.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "74bbcc94-b0db-4f5d-8ec2-c0f0fc50fb38"],
+ "RGBColor",
  "."
 }], "Subitem",ExpressionUUID->"37e6aaba-aede-4399-af65-1444827c568d"],
 
@@ -193,43 +130,14 @@ Cell[TextData[{
  " syntax."
 }], "Item",ExpressionUUID->"1edbf00e-f8a2-41f0-a963-c4359bd81d70"],
 
-Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "CloudDeploy", "paclet:ref/CloudDeploy", 
-    "https://reference.wolfram.com/language/ref/CloudDeploy.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "5c22fec3-5c30-42c5-8193-9df4c28a5929"],
- ": Deploys the form as an active web application in the Wolfram Cloud."
-}], "Item",ExpressionUUID->"8efb732e-5e7a-4300-9d29-2ba84960a41c"],
+Cell["\<\
+CloudDeploy: Deploys the form as an active web application in the Wolfram \
+Cloud.\
+\>", "Item",ExpressionUUID->"8efb732e-5e7a-4300-9d29-2ba84960a41c"],
 
-Cell[TextData[{
- Cell[BoxData[
-  TemplateBox[{
-   "DeleteObject", "paclet:ref/DeleteObject", 
-    "https://reference.wolfram.com/language/ref/DeleteObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "1cb1fbc7-ca0a-4e70-a517-af23b56092a0"],
- ": Removes the deployed cloud object when it is no longer needed."
-}], "Item",ExpressionUUID->"d910fe14-6bb7-4ff5-8050-8f700da3af28"],
+Cell["\<\
+DeleteObject: Removes the deployed cloud object when it is no longer needed.\
+\>", "Item",ExpressionUUID->"d910fe14-6bb7-4ff5-8050-8f700da3af28"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -258,28 +166,13 @@ Cell[CellGroupData[{
 
 Cell["2. Define the FormFunction", "Section",ExpressionUUID->"98abfce5-e920-4c6c-8f76-e2e73c9f3a09"],
 
-Cell[TextData[{
- "The form below asks for a country, a highlight color, and a zoom radius in \
-miles. When submitted, it applies the action function to generate a centered ",
- Cell[BoxData[
-  TemplateBox[{
-   "GeoGraphics", "paclet:ref/GeoGraphics", 
-    "https://reference.wolfram.com/language/ref/GeoGraphics.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "00061566-afec-415f-a31f-e11d5133cb6d"],
- " image. Here we are using the form {name, label}->type. \nYou can either \
-define your form as a separate formObject, and then insert it into the \
-FormFunction, or simply include it in the form function. "
-}], "Text",
+Cell["\<\
+The form below asks for a country, a highlight color, and a zoom radius in \
+miles. When submitted, it applies the action function to generate a centered \
+GeoGraphics image. Here we are using the form {name, label}->type. 
+You can either define your form as a separate formObject, and then insert it \
+into the FormFunction, or simply include it in the form function. \
+\>", "Text",
  CellChangeTimes->{{4.002004767413701*^9, 
   4.0020048330669937`*^9}},ExpressionUUID->"a60a9736-f85b-43e7-bf41-\
 0fe2a6eb4097"],
@@ -392,25 +285,10 @@ Cell[CellGroupData[{
 
 Cell["3. Deploy to the Wolfram Cloud", "Section",ExpressionUUID->"8c6069b3-3dbc-453d-aa77-45cbe9b30568"],
 
-Cell[TextData[{
- "Deploy the form to your Wolfram Cloud account. The returned ",
- Cell[BoxData[
-  TemplateBox[{
-   "CloudObject", "paclet:ref/CloudObject", 
-    "https://reference.wolfram.com/language/ref/CloudObject.html"},
-   "TextRefLink",
-   DisplayFunction->(TagBox[
-     ButtonBox[
-      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
-       "Source Sans Pro"], 
-      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
-          RGBColor[0.02, 0.286, 0.651], 
-          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
-      False], 
-     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
-  "aee00bb7-755c-40c6-a975-0f6d68471e43"],
- " contains the live public URL. "
-}], "Text",ExpressionUUID->"79cdbcfd-86d9-4f4d-9012-39447277b3e6"],
+Cell["\<\
+Deploy the form to your Wolfram Cloud account. The returned CloudObject \
+contains the live public URL. \
+\>", "Text",ExpressionUUID->"79cdbcfd-86d9-4f4d-9012-39447277b3e6"],
 
 Cell[CellGroupData[{
 
@@ -510,49 +388,49 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[576, 22, 116, 0, 157, "Title",ExpressionUUID->"c603e2f5-d087-4d3b-8d3e-0b02a2182c57"],
-Cell[695, 24, 1403, 35, 55, "Text",ExpressionUUID->"df3175be-2948-48c4-8139-1ca645cf1f50"],
-Cell[2101, 61, 596, 20, 49, "Text",ExpressionUUID->"1afacd70-6743-44af-ba64-ca56d9b7f171"],
+Cell[576, 22, 116, 0, 70, "Title",ExpressionUUID->"c603e2f5-d087-4d3b-8d3e-0b02a2182c57"],
+Cell[695, 24, 210, 3, 70, "Text",ExpressionUUID->"df3175be-2948-48c4-8139-1ca645cf1f50"],
+Cell[908, 29, 596, 20, 70, "Text",ExpressionUUID->"1afacd70-6743-44af-ba64-ca56d9b7f171"],
 Cell[CellGroupData[{
-Cell[2722, 85, 98, 0, 66, "Section",ExpressionUUID->"98e8e8e3-669d-420b-b6b0-125e74aba476"],
-Cell[2823, 87, 484, 12, 50, "Item",ExpressionUUID->"dbeb6772-7ce6-45cc-9f44-8accfddda894"],
+Cell[1529, 53, 98, 0, 70, "Section",ExpressionUUID->"98e8e8e3-669d-420b-b6b0-125e74aba476"],
+Cell[1630, 55, 484, 12, 70, "Item",ExpressionUUID->"dbeb6772-7ce6-45cc-9f44-8accfddda894"],
 Cell[CellGroupData[{
-Cell[3332, 103, 814, 20, 50, "Item",ExpressionUUID->"02fdb1e8-8685-406f-88be-1dcfa1853181"],
-Cell[4149, 125, 669, 17, 44, "Subitem",ExpressionUUID->"deb52ea9-069a-4166-9a3c-35af63e3fbb0"],
-Cell[4821, 144, 959, 24, 25, "Subitem",ExpressionUUID->"37e6aaba-aede-4399-af65-1444827c568d"],
-Cell[5783, 170, 492, 12, 25, "Subitem",ExpressionUUID->"e28a8ddf-cc2d-45fe-96c4-f9b0c52974e0"]
+Cell[2139, 71, 210, 3, 70, "Item",ExpressionUUID->"02fdb1e8-8685-406f-88be-1dcfa1853181"],
+Cell[2352, 76, 669, 17, 70, "Subitem",ExpressionUUID->"deb52ea9-069a-4166-9a3c-35af63e3fbb0"],
+Cell[3024, 95, 383, 10, 70, "Subitem",ExpressionUUID->"37e6aaba-aede-4399-af65-1444827c568d"],
+Cell[3410, 107, 492, 12, 70, "Subitem",ExpressionUUID->"e28a8ddf-cc2d-45fe-96c4-f9b0c52974e0"]
 }, Open  ]],
-Cell[6290, 185, 387, 8, 30, "Item",ExpressionUUID->"1edbf00e-f8a2-41f0-a963-c4359bd81d70"],
-Cell[6680, 195, 753, 17, 30, "Item",ExpressionUUID->"8efb732e-5e7a-4300-9d29-2ba84960a41c"],
-Cell[7436, 214, 751, 17, 30, "Item",ExpressionUUID->"d910fe14-6bb7-4ff5-8050-8f700da3af28"],
-Cell[8190, 233, 596, 20, 49, "Text",ExpressionUUID->"5cb96ddb-bb71-4d88-858d-35604a8db873"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[8823, 258, 100, 0, 66, "Section",ExpressionUUID->"98abfce5-e920-4c6c-8f76-e2e73c9f3a09"],
-Cell[8926, 260, 1121, 24, 121, "Text",ExpressionUUID->"a60a9736-f85b-43e7-bf41-0fe2a6eb4097"],
-Cell[10050, 286, 1801, 41, 213, "Input",ExpressionUUID->"1169a4cf-add5-4bb8-a5f7-caaee3685839"],
-Cell[11854, 329, 1712, 36, 274, "Input",ExpressionUUID->"04a60abc-6983-43a8-814b-de9760f15c4f"],
-Cell[13569, 367, 596, 20, 49, "Text",ExpressionUUID->"4cd40ec6-097d-4d21-ba09-b3fe2fa511fc"]
+Cell[3917, 122, 387, 8, 70, "Item",ExpressionUUID->"1edbf00e-f8a2-41f0-a963-c4359bd81d70"],
+Cell[4307, 132, 161, 3, 70, "Item",ExpressionUUID->"8efb732e-5e7a-4300-9d29-2ba84960a41c"],
+Cell[4471, 137, 155, 2, 70, "Item",ExpressionUUID->"d910fe14-6bb7-4ff5-8050-8f700da3af28"],
+Cell[4629, 141, 596, 20, 70, "Text",ExpressionUUID->"5cb96ddb-bb71-4d88-858d-35604a8db873"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14202, 392, 104, 0, 66, "Section",ExpressionUUID->"8c6069b3-3dbc-453d-aa77-45cbe9b30568"],
-Cell[14309, 394, 780, 18, 33, "Text",ExpressionUUID->"79cdbcfd-86d9-4f4d-9012-39447277b3e6"],
-Cell[CellGroupData[{
-Cell[15114, 416, 243, 5, 29, "Input",ExpressionUUID->"0cce51fd-adea-4e8b-aace-ad7988bb2347"],
-Cell[15360, 423, 567, 12, 34, "Output",ExpressionUUID->"deeea616-8413-441d-beb1-d0942437e7c5"]
-}, Open  ]],
-Cell[15942, 438, 106, 0, 36, "CodeText",ExpressionUUID->"f914f9e5-6366-46ff-a1d9-a95b5e20e956"],
-Cell[16051, 440, 120, 1, 29, "Input",ExpressionUUID->"dc134a79-546d-45a8-bb2d-536ea0e50aba"],
-Cell[16174, 443, 169, 3, 33, "Text",ExpressionUUID->"a5cf7f98-c54c-444b-9192-1bb0eed5e4f4"],
-Cell[16346, 448, 153, 2, 33, "Text",ExpressionUUID->"fe55dbf7-f4dd-4bb5-8671-cc03ba70f470"],
-Cell[16502, 452, 126, 0, 33, "Text",ExpressionUUID->"98c1d743-33ce-4add-b5b5-686176bcdfe2"],
-Cell[16631, 454, 127, 0, 33, "Text",ExpressionUUID->"a2c1f579-113f-4020-9e09-2e23725ceabd"],
-Cell[16761, 456, 596, 20, 49, "Text",ExpressionUUID->"7625f4e5-7228-4f5a-990d-b8998517b25e"]
+Cell[5262, 166, 100, 0, 70, "Section",ExpressionUUID->"98abfce5-e920-4c6c-8f76-e2e73c9f3a09"],
+Cell[5365, 168, 521, 9, 70, "Text",ExpressionUUID->"a60a9736-f85b-43e7-bf41-0fe2a6eb4097"],
+Cell[5889, 179, 1801, 41, 70, "Input",ExpressionUUID->"1169a4cf-add5-4bb8-a5f7-caaee3685839"],
+Cell[7693, 222, 1712, 36, 70, "Input",ExpressionUUID->"04a60abc-6983-43a8-814b-de9760f15c4f"],
+Cell[9408, 260, 596, 20, 70, "Text",ExpressionUUID->"4cd40ec6-097d-4d21-ba09-b3fe2fa511fc"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17394, 481, 100, 0, 66, "Section",ExpressionUUID->"edf4537c-0be0-4590-bb7a-0f52e51a0bec"],
-Cell[17497, 483, 173, 3, 36, "CodeText",ExpressionUUID->"16b85864-7fef-4cfb-9ae1-bea957ddd5e3"],
-Cell[17673, 488, 145, 2, 29, "Input",ExpressionUUID->"be40cc8e-b9cf-4bd8-a9dc-9a220605452e"]
+Cell[10041, 285, 104, 0, 70, "Section",ExpressionUUID->"8c6069b3-3dbc-453d-aa77-45cbe9b30568"],
+Cell[10148, 287, 183, 3, 70, "Text",ExpressionUUID->"79cdbcfd-86d9-4f4d-9012-39447277b3e6"],
+Cell[CellGroupData[{
+Cell[10356, 294, 243, 5, 70, "Input",ExpressionUUID->"0cce51fd-adea-4e8b-aace-ad7988bb2347"],
+Cell[10602, 301, 567, 12, 70, "Output",ExpressionUUID->"deeea616-8413-441d-beb1-d0942437e7c5"]
+}, Open  ]],
+Cell[11184, 316, 106, 0, 70, "CodeText",ExpressionUUID->"f914f9e5-6366-46ff-a1d9-a95b5e20e956"],
+Cell[11293, 318, 120, 1, 70, "Input",ExpressionUUID->"dc134a79-546d-45a8-bb2d-536ea0e50aba"],
+Cell[11416, 321, 169, 3, 70, "Text",ExpressionUUID->"a5cf7f98-c54c-444b-9192-1bb0eed5e4f4"],
+Cell[11588, 326, 153, 2, 70, "Text",ExpressionUUID->"fe55dbf7-f4dd-4bb5-8671-cc03ba70f470"],
+Cell[11744, 330, 126, 0, 70, "Text",ExpressionUUID->"98c1d743-33ce-4add-b5b5-686176bcdfe2"],
+Cell[11873, 332, 127, 0, 70, "Text",ExpressionUUID->"a2c1f579-113f-4020-9e09-2e23725ceabd"],
+Cell[12003, 334, 596, 20, 70, "Text",ExpressionUUID->"7625f4e5-7228-4f5a-990d-b8998517b25e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12636, 359, 100, 0, 70, "Section",ExpressionUUID->"edf4537c-0be0-4590-bb7a-0f52e51a0bec"],
+Cell[12739, 361, 173, 3, 70, "CodeText",ExpressionUUID->"16b85864-7fef-4cfb-9ae1-bea957ddd5e3"],
+Cell[12915, 366, 145, 2, 70, "Input",ExpressionUUID->"be40cc8e-b9cf-4bd8-a9dc-9a220605452e"]
 }, Open  ]]
 }, Open  ]]
 }
@@ -560,4 +438,3 @@ Cell[17673, 488, 145, 2, 29, "Input",ExpressionUUID->"be40cc8e-b9cf-4bd8-a9dc-9a
 *)
 
 (* End of internal cache information *)
-
